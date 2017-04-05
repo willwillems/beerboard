@@ -10,8 +10,10 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "firebase": "^3.7.5",
     "vue": "^2.2.2",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "vuefire": "^1.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
