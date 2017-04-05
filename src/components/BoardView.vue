@@ -19,5 +19,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.main {
+  height: 100%;
+  width: 100%;
+}
 
 </style>
