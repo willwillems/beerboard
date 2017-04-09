@@ -16,6 +16,7 @@ export default {
       users: [
         {
           name: "Rutger",
+          uid: 32467891,
           img: "https://graph.facebook.com/100001764027428/picture?width=999&height=999",
           title: "Bierkoning 2017"
         }

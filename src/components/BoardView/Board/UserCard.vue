@@ -1,6 +1,6 @@
 <template lang="jade">
-  .card
-    img.user-image(:src="user.img")
+  .card(draggable="true" ,:id="user.uid")
+    .user-image(:style="'background-image: url(' + user.img + ')'")
     .name {{user.name}}
     .title {{user.title}}
     .progress-bar
@@ -32,6 +32,8 @@ $card-height: $card-width*1.3;
 
 .user-image {
   width: $card-width;
+  height: $card-width;
+  background-size: cover;
 }
 
 .name, .title {

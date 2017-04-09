@@ -1,18 +1,21 @@
 <template lang="jade">
-  .main heuhj
+  .main
     menu-bar
     board
+    cart
 </template>
 
 <script>
 import Board from '@/components/BoardView/Board'
 import MenuBar from '@/components/BoardView/MenuBar'
+import Cart from '@/components/BoardView/Cart'
 
 export default {
   name: 'board-view',
   components: {
     Board,
-    MenuBar
+    MenuBar,
+    Cart
   }
 }
 </script>
