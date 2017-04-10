@@ -5,7 +5,9 @@ var firebaseApp = firebase.initializeApp({
 })
 var db = firebaseApp.database()
 
-export default {
-  // simple syntax, bind as an array by default
-  anArray: db.ref('test')
+export default function () {
+  return {
+    // simple syntax, bind as an array by default
+    boardUsers: db.ref('users')
+  }
 }
