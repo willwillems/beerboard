@@ -2,6 +2,7 @@
   .main
     menu-bar
     board
+    pop-up
     cart
 </template>
 
@@ -9,13 +10,15 @@
 import Board from '@/components/BoardView/Board'
 import MenuBar from '@/components/BoardView/MenuBar'
 import Cart from '@/components/BoardView/Cart'
+import PopUp from '@/components/BoardView/PopUp'
 
 export default {
   name: 'board-view',
   components: {
     Board,
     MenuBar,
-    Cart
+    Cart,
+    PopUp
   }
 }
 </script>
