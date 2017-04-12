@@ -1,10 +1,12 @@
 <template lang="jade">
   .card(draggable="true" ,:id="user.uid")
-    .beer-count-circle
+    .beer-count-circle 
+      .beer-count {{user.beers}}
     .user-image(:style="'background-image: url(' + user.img + ')'")
     .name {{user.name}}
     .title {{user.title}}
     .progress-bar
+      .done
 </template>
 
 <script>
@@ -18,8 +20,9 @@ export default {
 <style lang="scss" scoped>
 $prim-white: white;
 
-$card-width: 10em;
+$card-width: 10rem;
 $card-height: $card-width*1.3;
+$beer-count-radius: 0.3*$card-width;
 
 .card {
     position: relative;
@@ -30,6 +33,7 @@ $card-height: $card-width*1.3;
     border-radius: 5px;
     overflow: hidden;
     text-align: left;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.13);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
     &:hover {
@@ -39,13 +43,24 @@ $card-height: $card-width*1.3;
 }
 
 .beer-count-circle {
-  width: 0.6*$card-width;
-  height: 0.6*$card-width;
-  background-color: white;
-  border-radius: 0.3*$card-width;
-  top:-0.3*$card-width;
-  left:-0.3*$card-width;
+  width: 2*$beer-count-radius;
+  height: 2*$beer-count-radius;
+  top:-$beer-count-radius;
+  left:-$beer-count-radius;
   position: absolute;
+  border-radius: $beer-count-radius;
+  background-color: white;
+  
+
+  .beer-count {
+    height: $beer-count-radius;
+    width: $beer-count-radius;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: -5px;
+    font-size: 1.5em;
+  }
 }
 
 .user-image {
@@ -60,10 +75,25 @@ $card-height: $card-width*1.3;
 
 .name {
   font-size: 1em;
+  margin-top: 5px;
 }
 
 .title {
   font-size: 0.5em;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0px;
+  height: 3px;
+  width: 100%;
+  background-color: #666;
+
+  .done {
+    background-color: teal;
+    width: 40px;
+    height: 100%;
+  }
 }
 
 </style>
