@@ -1,6 +1,6 @@
 {
   "name": "beerboard",
-  "version": "1.0.0",
+  "version": "3.0.0-alpha.0",
   "description": "A simple central way to mange the ammount of beers consumed in a group.",
   "author": "NickolasBoyer <rut.willems@gmail.com>",
   "private": true,
