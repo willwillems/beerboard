@@ -23,12 +23,13 @@ $pop-up-width: 200px;
 
 .pop-up { 
   position: absolute;
-  top: 50px;
-  left: 300px;
+  top: 60px;
+  right: 5px;
   width: $pop-up-width;
   background-color: white;
   border-radius: 10px;
   border: 3px solid black;
+  //overflow: hidden;
 
   .menu-item {
     padding: 8px;
@@ -36,8 +37,12 @@ $pop-up-width: 200px;
     border-bottom: 1px solid darkgray;
     text-align: left;
 
-    &:last-child{
+    &:last-child {
         border: 0;
+    }
+
+    &:hover {
+        background-color: aliceblue;
     }
   }
 }
@@ -56,7 +61,7 @@ $pop-up-width: 200px;
   
  
   bottom: 100%;
-  left: 50%;
+  right: 10%;
   margin-left: -15px; /* adjust for border width */
 }
 
@@ -64,6 +69,6 @@ $pop-up-width: 200px;
 .pop-up:before {
   border-width: 19px; // 4px extra border width
   border-bottom-color: black;
-  left: calc(50% - 4px); // Minus extra border width
+  right: calc(10% - 4px); // Minus extra border width
 }
 </style>

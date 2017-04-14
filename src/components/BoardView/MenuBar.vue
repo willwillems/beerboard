@@ -33,7 +33,7 @@ $bar-height: 40px;
   display: inline-block;
   line-height: $bar-height;
   font-size: 2em;
-  margin: 0px 15px;
+  margin: 0px 27px;
   opacity: 0.71;
 }
 
