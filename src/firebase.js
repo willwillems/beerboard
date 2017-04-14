@@ -1,7 +1,9 @@
 var firebase = require('firebase')
 
+import {FIREBASE_DB} from './constants'
+
 var firebaseApp = firebase.initializeApp({
-  databaseURL: "https://beerboard-1367.firebaseio.com/"
+  databaseURL: FIREBASE_DB
 })
 var db = firebaseApp.database()
 
