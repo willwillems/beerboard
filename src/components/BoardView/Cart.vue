@@ -12,7 +12,7 @@ export default {
       }
     }
   },
-  methods: { // No arrow functions here for this gets messed up, naturally
+  methods: { // No arrow functions here for thas gets messed up, naturally
     drop: function (e) {
       this.classObject['drag-over'] = false
     },

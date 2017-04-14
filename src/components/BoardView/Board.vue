@@ -36,6 +36,7 @@ export default {
   position: fixed;
   top: 40px;
   background-color: #F6F6F6;
+  display: flex;
 }
 
 </style>
