@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "PopUp.vue",
+  name: "PopUp",
   data: function () {
     return {
     }
