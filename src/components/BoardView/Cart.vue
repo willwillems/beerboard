@@ -1,25 +1,21 @@
 <template lang="jade">
   .main(@drop="drop", @dragover="dragover", :class="classObject")
     .menulist
-      .menuitem(v-for="item in items", :style="'background-image: url(' + item.img + ')'") 
+      .menuitem(v-for="user in cartList", :style="'background-image: url(' + user.img + ')'") 
+        .ammount-beers {{user.beersInCart}}
 </template>
 
 <script>
 export default {
   name: 'cart',
+  props: {
+    cartList: Array
+  },
   data: function () {
     return {
       classObject: {
         'drag-over': false
-      },
-      items: [
-        {
-          name: "Rutger",
-          uid: 32467891,
-          img: "https://graph.facebook.com/100001764027428/picture?width=999&height=999",
-          title: "Bierkoning 2017"
-        }
-      ]
+      }
     }
   },
   methods: { // No arrow functions here for thas gets messed up, naturally
@@ -36,7 +32,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-$cart-radius: 150px;
+$cart-radius: 250px;
 
 /// Mixin to place items on a circle
 /// @author Hugo Giraudel
@@ -62,7 +58,7 @@ $cart-radius: 150px;
     margin: -($item-size / 2);
   
     $angle: (360 / $item-count);
-    $rot: 200; // modified so it starts at 10 a' clock
+    $rot: 195; // modified so it starts at 10 a' clock
 
     @for $i from 1 through $item-count {
       &:nth-of-type(#{$i}) {
@@ -78,7 +74,7 @@ $cart-radius: 150px;
 }
 
 .menulist {
-    @include on-circle($item-count: 8, $circle-size: 2*$cart-radius, $item-size: 80px); 
+    @include on-circle($item-count: 16, $circle-size: 2*$cart-radius, $item-size: 80px); 
 
     .menuitem {
       display: block; 
@@ -86,6 +82,17 @@ $cart-radius: 150px;
       border-radius: 50%;
       background-size: cover;
     }
+}
+
+.ammount-beers {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: darkcyan;
+  position: relative;
+  top: 75%;
+  float: right;
+  color: whitesmoke;
 }
 
 .main {
