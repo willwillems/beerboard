@@ -35,12 +35,20 @@ $bar-height: 40px;
   font-size: 2em;
   margin: 0px 27px;
   opacity: 0.71;
+
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 #logo {
   float: left;
   opacity: 0.9;
   font-weight: 600;
+}
+
+#time-date {
+  font-size: 1.2em;
 }
 
 #settings {
