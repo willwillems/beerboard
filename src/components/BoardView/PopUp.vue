@@ -1,5 +1,5 @@
 <template lang="jade">
-    .pop-up
+    .pop-up(:class="classObject")
       .menu-item lol
       .menu-item lol
       .menu-item lol
@@ -10,6 +10,9 @@ export default {
   name: "PopUp",
   data: function () {
     return {
+      classObject: {
+        'active': false
+      }
     }
   },
   methods: { // No arrow functions here for thas gets messed up, naturally
@@ -30,6 +33,11 @@ $pop-up-width: 200px;
   border-radius: 10px;
   border: 3px solid black;
   //overflow: hidden;
+
+  display: none;
+  &.active {
+    display: block;
+  }
 
   .menu-item {
     padding: 8px;
