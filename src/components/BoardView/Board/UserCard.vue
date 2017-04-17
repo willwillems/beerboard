@@ -15,7 +15,7 @@ export default {
   props: ['user'],
   methods: {
     startDrag: function (e) {
-      e.dataTransfer.setData("text/uid", e.target.id)
+      e.dataTransfer.setData("uid", e.target.id)
     }
   }
 }

@@ -1,6 +1,12 @@
 <template lang="jade">
   .main(@drop="drop", @dragover="dragover")
-    i.material-icons.cartbutton(@click="$store.dispatch('checkCartOut')") shopping_cart
+    // This overlay is because people often click inaccurate on touch screens
+    .check-out-overlay(@click="$store.dispatch('checkCartOut')")
+    .container(v-if="!usersInCart")
+      i.material-icons.cartbutton shopping_cart
+    .container(v-if="usersInCart")
+      i.cartbutton {{totalBeersInCart}}
+      b.check-out-button check out
     .menu-circle(:class="classObject")
       .menulist
         .menuitem(v-for="user in cart", :style="'background-image: url(' + user.img + ')'") 
@@ -30,13 +36,19 @@ export default {
       return state.map((val) => {
         return Object.assign({}, val, this.boardUsers[val.uid])
       })
+    },
+    usersInCart () {
+      return this.cart.length !== 0
+    },
+    totalBeersInCart () {
+      return this.cart.reduce((acc, cur) => acc + cur.beersInCart, 0)
     }
   },
   methods: { // No arrow functions here for thas gets messed up, naturally
     drop: function (e) {
       this.classObject['drag-over'] = false
       this.$store.commit('addUserToCart', {
-        userID: e.dataTransfer.getData("text/uid"),
+        userID: e.dataTransfer.getData("uid"),
         beers: 1
       })
     },
@@ -52,6 +64,7 @@ export default {
 <style lang="scss" scoped>
 $cart-radius: 250px;
 $cart-beeramount-badge-color: #23B883;
+$check-out-button-color: #c70d0d;
 
 @mixin material-shadow() {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -125,6 +138,30 @@ $cart-beeramount-badge-color: #23B883;
   bottom: 0.1*$cart-radius;
   font-size: 8em;
   z-index: 2;
+}
+
+.check-out-button {
+    z-index: 2;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: $check-out-button-color;
+    font-weight: 500;
+    font-style: oblique;
+    font-variant: small-caps;
+    font-size: 1.3em;
+    opacity: 0.71;
+}
+
+.check-out-overlay {
+  height: $cart-radius;
+  width: $cart-radius;
+  position: fixed;
+  bottom: -0.5*$cart-radius;
+  right: -0.5*$cart-radius;
+  border-radius: 0.5*$cart-radius;
+  opacity: 0;
+  z-index: 10;
 }
 
 .menu-circle {
