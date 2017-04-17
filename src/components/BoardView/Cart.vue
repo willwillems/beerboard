@@ -1,8 +1,10 @@
 <template lang="jade">
   .main(@drop="drop", @dragover="dragover", :class="classObject")
+    button(@click="$store.dispatch('checkCartOut')")
     .menulist
       .menuitem(v-for="user in cart", :style="'background-image: url(' + user.img + ')'") 
         .ammount-beers {{user.beersInCart}}
+    
 </template>
 
 <script>

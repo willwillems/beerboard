@@ -6,8 +6,8 @@ const state = {
 }
 
 const mutations = {
-  toggleSpinner (state) {
-    state.spinnerActive = !state.spinnerActive
+  clearCart (state) {
+    state.cart = []
   },
   addUserToCart (state, {userID, beers}) {
     let userIndex = state.cart.findIndex(obj => {
@@ -27,16 +27,17 @@ const mutations = {
 }
 
 const actions = {
-  // DO NOT MUTATE STATE OUTSIDE OF MUTATION
-  /* checkCartOut ({ state, commit }) {
-    state.cart.forEach(function (e) {
-      addBeerToUser()
+  checkCartOut ({ state, commit }) {
+    // console.log(state.cart)
+    state.cart.forEach(function (user) {
+      addBeerToUser(user)
     })
-    return
-  } */
+    commit('clearCart')
+  }
 }
 
 export default {
   state,
-  mutations
+  mutations,
+  actions
 }
