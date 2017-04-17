@@ -1,9 +1,10 @@
 <template lang="jade">
-  .main(@drop="drop", @dragover="dragover", :class="classObject")
-    button(@click="$store.dispatch('checkCartOut')")
-    .menulist
-      .menuitem(v-for="user in cart", :style="'background-image: url(' + user.img + ')'") 
-        .ammount-beers {{user.beersInCart}}
+  .main(@drop="drop", @dragover="dragover")
+    i.material-icons.cartbutton(@click="$store.dispatch('checkCartOut')") shopping_cart
+    .menu-circle(:class="classObject")
+      .menulist
+        .menuitem(v-for="user in cart", :style="'background-image: url(' + user.img + ')'") 
+          .ammount-beers {{user.beersInCart}}
     
 </template>
 
@@ -118,7 +119,15 @@ $cart-beeramount-badge-color: #23B883;
   color: whitesmoke;
 }
 
-.main {
+.cartbutton {
+  position: absolute;
+  right: 0.1*$cart-radius;
+  bottom: 0.1*$cart-radius;
+  font-size: 8em;
+  z-index: 2;
+}
+
+.menu-circle {
   height: 2*$cart-radius;
   width: 2*$cart-radius;
   position: fixed;
