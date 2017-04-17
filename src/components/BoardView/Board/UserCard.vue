@@ -1,5 +1,5 @@
 <template lang="jade">
-  .card(draggable="true" ,:id="user.uid")
+  .card(draggable="true", @dragstart="startDrag", :id="user.uid")
     .beer-count-circle 
       .beer-count {{user.beers}}
     .user-image(:style="'background-image: url(' + user.img + ')'")
@@ -12,7 +12,12 @@
 <script>
 export default {
   name: 'user-card',
-  props: ['user']
+  props: ['user'],
+  methods: {
+    startDrag: function (e) {
+      e.dataTransfer.setData("text/uid", e.target.id)
+    }
+  }
 }
 </script>
 

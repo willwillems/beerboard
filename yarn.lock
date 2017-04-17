@@ -4839,6 +4839,10 @@ vuefire@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/vuefire/-/vuefire-1.4.1.tgz#3aa2d3e17e3a0c1cba5595c95f6ec08e5cb4faed"
 
+vuex@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-2.3.0.tgz#600048bef1682d657a6f3b7b1ffb44898703f2b4"
+
 watchpack@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.3.1.tgz#7d8693907b28ce6013e7f3610aa2a1acf07dad87"

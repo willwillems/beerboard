@@ -1,13 +1,16 @@
 <template lang="jade">
   .main(@drop="drop", @dragover="dragover", :class="classObject")
     .menulist
-      .menuitem(v-for="user in cartList", :style="'background-image: url(' + user.img + ')'") 
+      .menuitem(v-for="user in cart", :style="'background-image: url(' + user.img + ')'") 
         .ammount-beers {{user.beersInCart}}
 </template>
 
 <script>
+import firebase from '@/firebase'
+
 export default {
   name: 'cart',
+  firebase,
   props: {
     cartList: Array
   },
@@ -18,9 +21,21 @@ export default {
       }
     }
   },
+  computed: {
+    cart () {
+      const state = this.$store.state.appstate.cart
+      return state.map((val) => {
+        return Object.assign({}, val, this.boardUsers[val.uid])
+      })
+    }
+  },
   methods: { // No arrow functions here for thas gets messed up, naturally
     drop: function (e) {
       this.classObject['drag-over'] = false
+      this.$store.commit('addUserToCart', {
+        userID: e.dataTransfer.getData("text/uid"),
+        beers: 1
+      })
     },
     dragover: function (e) {
       this.classObject['drag-over'] = true
@@ -33,6 +48,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 $cart-radius: 250px;
+$cart-beeramount-badge-color: #23B883;
+
+@mixin material-shadow() {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
 
 /// Mixin to place items on a circle
 /// @author Hugo Giraudel
@@ -81,6 +101,7 @@ $cart-radius: 250px;
       max-width: 100%; 
       border-radius: 50%;
       background-size: cover;
+      @include material-shadow();
     }
 }
 
@@ -88,7 +109,7 @@ $cart-radius: 250px;
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: darkcyan;
+  background-color: $cart-beeramount-badge-color;
   position: relative;
   top: 75%;
   float: right;

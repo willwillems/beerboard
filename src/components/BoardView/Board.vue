@@ -1,6 +1,6 @@
 <template lang="jade">
   .main
-    user-card(v-for="user in boardUsers", :user="user")
+    user-card(v-for="user in boardUsersArray", :user="user")
 </template>
 
 <script>

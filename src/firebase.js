@@ -2,14 +2,18 @@ var firebase = require('firebase')
 
 import {FIREBASE_DB} from './constants'
 
-var firebaseApp = firebase.initializeApp({
+export var firebaseApp = firebase.initializeApp({
   databaseURL: FIREBASE_DB
 })
-var db = firebaseApp.database()
+const db = firebaseApp.database()
 
 export default function () {
   return {
-    // simple syntax, bind as an array by default
-    boardUsers: db.ref('users')
+    boardUsersArray: db.ref('users'),
+    boardUsers: {
+      source: db.ref('users'),
+      // optionally bind as an object
+      asObject: true
+    }
   }
 }
