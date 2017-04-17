@@ -1,9 +1,14 @@
 var firebase = require('firebase')
 
-import {FIREBASE_DB} from './constants'
+import * as c from './constants'
 
 export var firebaseApp = firebase.initializeApp({
-  databaseURL: FIREBASE_DB
+  apiKey: c.FIREBASE_API_KEY,
+  authDomain: c.FIREBASE_AUTH,
+  databaseURL: c.FIREBASE_DB,
+  projectId: c.FIREBASE_PROJECT_ID,
+  storageBucket: c.FIREBASE_STORAGE,
+  messagingSenderId: c.FIREBASE_MESSAGE_ID
 })
 const db = firebaseApp.database()
 

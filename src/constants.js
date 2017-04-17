@@ -1,2 +1,6 @@
 export const FIREBASE_DB = "https://beerboard-1367.firebaseio.com/"
-
+export const FIREBASE_API_KEY = "beerboard-1367.firebaseapp.com"
+export const FIREBASE_AUTH = "beerboard-1367.firebaseapp.com"
+export const FIREBASE_PROJECT_ID = "beerboard-1367"
+export const FIREBASE_STORAGE = "beerboard-1367.appspot.com"
+export const FIREBASE_MESSAGE_ID = "497350370975"
