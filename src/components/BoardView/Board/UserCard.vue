@@ -91,7 +91,7 @@ $beer-count-radius: 0.3*$card-width;
 .progress-bar {
   position: absolute;
   bottom: 0px;
-  height: 3px;
+  height: 4px;
   width: 100%;
   background-color: #666;
 
