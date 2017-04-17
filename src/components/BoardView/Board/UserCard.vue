@@ -63,8 +63,9 @@ $beer-count-radius: 0.3*$card-width;
     position: absolute;
     bottom: 0px;
     right: 0px;
-    margin: -6px -12px;
+    margin: -6px 3px;
     font-size: 1.5em;
+    text-align: center;
   }
 }
 
