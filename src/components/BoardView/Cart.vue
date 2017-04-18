@@ -66,6 +66,9 @@ export default {
     dragover: function (e) {
       this.classObject['drag-over'] = true
       e.preventDefault()
+    },
+    rotateCartList: function () {
+      // give menulist a class object
     }
   }
 }
@@ -122,6 +125,12 @@ $check-out-button-color: #c70d0d;
 
 .menulist {
     @include on-circle($item-count: 16, $circle-size: 2*$cart-radius, $item-size: 80px); 
+
+    &.check-out {
+      transform: rotate(90deg);
+      transition: transform 0.2s;
+      transition-timing-function: cubic-bezier(0, 0.19, 0.99, 0.4);
+    }
 
     .menuitem {
       display: block; 
