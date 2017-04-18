@@ -2,14 +2,25 @@
   .main(@drop="drop", @dragover="dragover")
     // This overlay is because people often click inaccurate on touch screens
     .check-out-overlay(@click="$store.dispatch('checkCartOut')")
-    .container(v-if="!usersInCart")
-      i.material-icons.cartbutton shopping_cart
-    .container(v-if="usersInCart")
-      i.cartbutton {{totalBeersInCart}}
-      b.check-out-button check out
+    .container
+      transition(name="slide-left")
+        i.material-icons.cartbutton(v-if="!usersInCart") shopping_cart
+    .container
+      transition(name="fade-out")
+        i.cartbutton(v-if="usersInCart") {{totalBeersInCart}}
+      transition(name="slide-fade")
+        b.check-out-button(v-if="usersInCart") check out
     .menu-circle(:class="classObject")
-      .menulist
-        .menuitem(v-for="user in cart", :style="'background-image: url(' + user.img + ')'") 
+      transition-group(
+          name="smooth-list", 
+          tag="div", 
+          class="menulist"
+      )
+        .menuitem(
+          v-for="(user, i) in cart", 
+          :key="user.uid", 
+          :style="'background-image: url(' + user.img + ')'"
+        ) 
           .ammount-beers {{user.beersInCart}}
     
 </template>
@@ -175,12 +186,67 @@ $check-out-button-color: #c70d0d;
   transition: all 0.5s ease;
 
   &.drag-over {
-    height: 3*$cart-radius;
-    width: 3*$cart-radius;
-    bottom: -1.5*$cart-radius;
-    right: -1.5*$cart-radius;
-    border-radius: 1.5*$cart-radius;
+    height: 2.2*$cart-radius;
+    width: 2.2*$cart-radius;
+    bottom: -1.1*$cart-radius;
+    right: -1.1*$cart-radius;
+    border-radius: 1.1*$cart-radius;
   }
+}
+
+// Transistion classes for vue, check out 
+// https://vuejs.org/v2/guide/transitions.html
+// for more info.
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .5s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(300px);
+  opacity: 0;
+}
+
+
+.fade-out-enter-active {
+  transition: all .3s ease;
+}
+.fade-out-leave-active {
+  transition: all .2s ease;
+}
+.fade-out-enter, .fade-out-leave-to
+/* .fade-out-leave-active for <2.1.8 */ {
+  opacity: 0;
+}
+
+
+.slide-left-enter-active {
+  transition: all .3s ease;
+}
+.slide-left-leave-active {
+  transition: all .2s ease;
+}
+.slide-left-enter, .slide-left-leave-to
+/* .slide-left-leave-active for <2.1.8 */ {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+
+
+@keyframes moveinlist {
+    from { transform: rotate(90deg) translateY($cart-radius) rotate(-90deg); }
+    to   { transform: rotate(105deg) translateY($cart-radius) rotate(-105deg); }
+}
+
+.smooth-list-enter-active {
+  transition: all 1s;
+  animation: moveinlist 0.5s ease;
+}
+.smooth-list-enter, .smooth-list-leave-to /* .smooth-list-leave-active for <2.1.8 */ {
+  opacity: 0;
 }
 
 </style>
