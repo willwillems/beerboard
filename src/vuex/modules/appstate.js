@@ -2,10 +2,14 @@ import {addBeerToUser} from '../../firebaseFunctions'
 
 const state = {
   cart: [],
-  board: []
+  board: [],
+  settingsMenuOpen: false
 }
 
 const mutations = {
+  toggleSettings (state) {
+    state.settingsMenuOpen = !state.settingsMenuOpen
+  },
   clearCart (state) {
     state.cart = []
   },

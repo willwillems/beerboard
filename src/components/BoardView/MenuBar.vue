@@ -3,7 +3,7 @@
     .menu-element#logo BB
     .menu-element#time-date 15:33
     .menu-element#settings
-      i.material-icons settings
+      i.material-icons(@click="$store.commit('toggleSettings')") settings
 </template>
 
 <script>
