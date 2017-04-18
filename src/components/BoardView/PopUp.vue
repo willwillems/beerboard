@@ -26,6 +26,7 @@ $pop-up-width: 200px;
   top: 60px;
   right: 5px;
   width: $pop-up-width;
+  max-width: 90%; // prevent dialog being wider than screen for mobile users
   background-color: white;
   border-radius: 10px;
   border: 3px solid black;
