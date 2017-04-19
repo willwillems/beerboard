@@ -2080,7 +2080,7 @@ find-up@^1.0.0:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
 
-firebase@^3.7.5:
+firebase@^3.3.0, firebase@^3.7.5:
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-3.7.5.tgz#54190ddf6956662a43123ef060734acbd9663985"
   dependencies:
@@ -2089,6 +2089,12 @@ firebase@^3.7.5:
     jsonwebtoken "7.1.9"
     rsvp "3.2.1"
     xmlhttprequest "1.8.0"
+
+firebaseui@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-1.0.1.tgz#ba7bd6432d6a08d1a591fa49dd31112bc69f0385"
+  dependencies:
+    firebase "^3.3.0"
 
 flat-cache@^1.2.1:
   version "1.2.2"

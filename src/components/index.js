@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import BoardView from '@/components/BoardView'
 import LoginView from '@/components/LoginView'
 
+
 Vue.use(Router)
 
 export default new Router({

@@ -1,6 +1,6 @@
 <template lang="jade">
   .bar
-    .menu-element#logo BB
+    .menu-element#logo(@click="$router.push('/login')") BB
     .menu-element#time-date 15:33
     .menu-element#settings
       i.material-icons(@click="$store.commit('toggleSettings')") settings

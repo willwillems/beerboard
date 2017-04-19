@@ -2,7 +2,7 @@ var firebase = require('firebase')
 
 import * as c from './constants'
 
-export var firebaseApp = firebase.initializeApp({
+firebase.initializeApp({
   apiKey: c.FIREBASE_API_KEY,
   authDomain: c.FIREBASE_AUTH,
   databaseURL: c.FIREBASE_DB,
@@ -10,7 +10,9 @@ export var firebaseApp = firebase.initializeApp({
   storageBucket: c.FIREBASE_STORAGE,
   messagingSenderId: c.FIREBASE_MESSAGE_ID
 })
-const db = firebaseApp.database()
+const db = firebase.database()
+
+export var firebaseApp = firebase
 
 export default function () {
   return {

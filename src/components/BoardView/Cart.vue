@@ -64,6 +64,7 @@ export default {
       })
     },
     dragover: function (e) {
+      console.log(this)
       this.classObject['drag-over'] = true
       e.preventDefault()
     },
