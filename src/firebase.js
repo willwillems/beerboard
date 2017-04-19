@@ -16,9 +16,9 @@ export var firebaseApp = firebase
 
 export default function () {
   return {
-    boardUsersArray: db.ref('users'),
+    boardUsersArray: db.ref('houses/4356729193/users'),
     boardUsers: {
-      source: db.ref('users'),
+      source: db.ref('houses/4356729193/users'),
       // optionally bind as an object
       asObject: true
     }
