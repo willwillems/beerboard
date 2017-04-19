@@ -1,5 +1,6 @@
 <template lang="jade">
   .main
+    auth-modal
     menu-bar
     board
     pop-up
@@ -11,6 +12,7 @@ import Board from '@/components/BoardView/Board'
 import MenuBar from '@/components/BoardView/MenuBar'
 import Cart from '@/components/BoardView/Cart'
 import PopUp from '@/components/BoardView/PopUp'
+import AuthModal from '@/components/BoardView/AuthModal'
 
 export default {
   name: 'board-view',
@@ -18,7 +20,8 @@ export default {
     Board,
     MenuBar,
     Cart,
-    PopUp
+    PopUp,
+    AuthModal
   },
   data: function () {
     return {

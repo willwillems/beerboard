@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {firebaseApp} from '../firebase'
+import {firebaseApp} from '../../firebase'
 var firebaseui = require('firebaseui')
 
 var uiConfig = {
@@ -17,11 +17,11 @@ var uiConfig = {
     firebaseApp.auth.EmailAuthProvider.PROVIDER_ID
   ],
   // Terms of service url can be specified and will show up in the widget.
-  tosUrl: '/tos'
+  tosUrl: 'tos'
 }
 
 export default {
-  name: 'login-view',
+  name: 'login',
   created: function () {
     // Initialize the FirebaseUI Widget using Firebase.
     var ui = new firebaseui.auth.AuthUI(firebaseApp.auth())
@@ -34,3 +34,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+#firebaseui-auth-container {
+  width: 75%;
+  position: fixed;
+  left: 50%;
+  margin-left: -37.5%;
+  z-index: 100;
+}
+</style>
