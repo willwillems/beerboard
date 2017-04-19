@@ -3,7 +3,8 @@ import {addBeerToUser} from '../../firebaseFunctions'
 const state = {
   cart: [],
   board: [],
-  settingsMenuOpen: false
+  settingsMenuOpen: false,
+  authModalIsActive: false
 }
 
 const mutations = {

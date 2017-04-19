@@ -1,8 +1,6 @@
-<template>
-  <div>  
-    <h1 align="center" style="color:white;">Firebase Auth Quickstart Demo</h1>  
-    <div id="firebaseui-auth-container"></div>  
-  </div>  
+<template lang="jade">
+  .auth-modal(v-if="$store.state.appstate.authModalIsActive")
+    #firebaseui-auth-container  
 </template>
 
 <script>
@@ -36,11 +34,31 @@ export default {
 </script>
 
 <style lang="scss">
-#firebaseui-auth-container {
+.auth-modal {
   width: 75%;
   position: fixed;
   left: 50%;
+  top: 20%;
   margin-left: -37.5%;
   z-index: 100;
+}
+#firebaseui-auth-container {
+  .firebaseui-container {
+    width: 250px;
+    margin: auto;
+    z-index: 100;
+    background-color: whitesmoke;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    padding: 10px 0px; // for the :before pseudo element
+    &:before {
+      content: 'Sign-In';
+      font-size: 1.3em;
+      font-weight: 600;
+      opacity: 0.71;
+      padding: 5px 40px; // This creates the line underneath the sign in text
+      border-bottom: 2px solid lightgray;
+    }
+  }
 }
 </style>
