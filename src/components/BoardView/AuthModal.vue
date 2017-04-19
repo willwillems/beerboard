@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import {firebaseApp} from '../../firebase'
+import {firebaseApp} from '@/firebase'
 var firebaseui = require('firebaseui')
 
 var uiConfig = {
