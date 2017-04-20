@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style lang="scss">
+$auth-modal-backgroundcolor: white;
+
 .auth-modal {
   width: 75%;
   position: fixed;
@@ -47,7 +49,7 @@ export default {
     width: 250px;
     margin: auto;
     z-index: 100;
-    background-color: whitesmoke;
+    background-color: $auth-modal-backgroundcolor;
     border: 1px solid darkgray;
     border-radius: 5px;
     padding: 10px 0px; // for the :before pseudo element
