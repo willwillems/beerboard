@@ -29,3 +29,8 @@ export const addBeerToUser = function ({uid, beersInCart}) {
 export const logUser = function () {
   // console.log(auth.currentUser.uid)
 }
+
+export const signUserOut = function () {
+  // promise, thenable
+  return firebaseApp.auth().signOut()
+}

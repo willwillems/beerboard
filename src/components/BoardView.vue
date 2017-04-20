@@ -55,7 +55,7 @@ export default {
       } else {
         that.$store.commit("setAuthModal", {newState: true})
       }
-      console.log('thisisit', user)
+      console.log('authstatechanged', user)
     })
   }
 }

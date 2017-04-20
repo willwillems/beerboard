@@ -1,19 +1,19 @@
 <template lang="jade">
   .bar
-    .menu-element#logo(@click="logFBUser") BB
+    .menu-element#logo(@click="signOut") BB
     .menu-element#time-date 15:33
     .menu-element#settings
       i.material-icons(@click="$store.commit('toggleSettings')") settings
 </template>
 
 <script>
-import {logUser} from '@/firebaseFunctions'
+import {signUserOut} from '@/firebaseFunctions'
 
 export default {
   name: 'menu-bar',
   methods: {
-    logFBUser () {
-      logUser()
+    signOut () {
+      signUserOut().then(() => console.log("signed out"))
     }
   }
 }
