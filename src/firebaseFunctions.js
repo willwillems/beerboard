@@ -1,11 +1,6 @@
-import {firebaseApp} from './firebase'
+import {firebaseApp} from '@/firebase'
 
 const db = firebaseApp.database()
-const auth = firebaseApp.auth()
-
-auth.onAuthStateChanged(function (user) {
-  console.log('thisisit', user)
-})
 
 export const addBeerToUser = function ({uid, beersInCart}) {
   db.ref(`houses/4356729193/users/${uid}`).transaction(function (user) {
@@ -32,5 +27,5 @@ export const addBeerToUser = function ({uid, beersInCart}) {
 }
 
 export const logUser = function () {
-  console.log(auth.currentUser.uid)
+  // console.log(auth.currentUser.uid)
 }

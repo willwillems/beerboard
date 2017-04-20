@@ -1,0 +1,25 @@
+{
+  "rules": {
+    "history": {
+      "$uid": {
+        ".read": true,
+        ".write": true, // "auth != null && auth.uid == $uid",
+        "$entry": {
+          // ".validate": "newData.hasChildren(['beers', 'time'])"
+        }
+      }
+    },
+    "houses": {
+      "$houseID": {
+        ".read": "root.child('settings').child(auth.uid).child('house').val() === true",
+        ".write": "root.child('settings').child(auth.uid).child('house').val() === true"
+      }
+    },
+    "settings": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    }
+  }
+}
