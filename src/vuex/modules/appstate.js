@@ -11,6 +11,15 @@ const mutations = {
   toggleSettings (state) {
     state.settingsMenuOpen = !state.settingsMenuOpen
   },
+  setSettings (state, {newState}) {
+    state.settingsMenuOpen = newState
+  },
+  toggleAuthModal (state) {
+    state.authModalIsActive = !state.authModalIsActive
+  },
+  setAuthModal (state, {newState}) {
+    state.authModalIsActive = newState
+  },
   clearCart (state) {
     state.cart = []
   },

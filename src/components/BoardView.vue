@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import {firebaseApp} from '@/firebase'
+
 import Board from '@/components/BoardView/Board'
 import MenuBar from '@/components/BoardView/MenuBar'
 import Cart from '@/components/BoardView/Cart'
@@ -42,6 +44,19 @@ export default {
         }
       ]
     }
+  },
+  created: function () {
+    var that = this
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        that.$store.commit("setAuthModal", {newState: false})
+        // Data needs to be refreshed or something otherwise the
+        // cards are not shown untill the page is reloaded
+      } else {
+        that.$store.commit("setAuthModal", {newState: true})
+      }
+      console.log('thisisit', user)
+    })
   }
 }
 </script>
