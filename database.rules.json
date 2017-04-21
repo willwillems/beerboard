@@ -2,17 +2,29 @@
   "rules": {
     "history": {
       "$uid": {
-        ".read": true,
-        ".write": true, // "auth != null && auth.uid == $uid",
+        ".read": "true",
+        ".write": "true",
         "$entry": {
-          // ".validate": "newData.hasChildren(['beers', 'time'])"
+          ".validate": "newData.hasChildren(['beers', 'time', 'metaData'])",
+          "beers": {
+            ".validate": "newData.isNumber()"
+          },
+          "time": {
+            ".validate": "newData.isNumber()"
+          },
+          "metaData": {
+            ".validate": "newData.hasChildren() || newData.isBoolean()"
+          },
+          "$other": {
+            ".validate": "false"
+          }
         }
       }
     },
     "houses": {
-      "$houseID": {
-        ".read": "root.child('settings').child(auth.uid).child('house').val() === true",
-        ".write": "root.child('settings').child(auth.uid).child('house').val() === true"
+      "$houseId": {
+        ".read": "root.child('houses').child($houseId).child('users').child(auth.uid).val() != null",
+        ".write": "root.child('houses').child($houseId).child('users').child(auth.uid).val() != null"
       }
     },
     "settings": {

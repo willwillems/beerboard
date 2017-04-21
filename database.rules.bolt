@@ -1,0 +1,33 @@
+path /history/{uid} {
+  read() { true } // { isCurrentUser(uid) }
+  write() { true } // { isCurrentUser(uid) }
+}
+
+path /history/{uid}/{entry} is HistoryEntry;
+
+type HistoryEntry {
+  beers: Number,
+  time: Number,
+  metaData: Object | Boolean
+}
+
+path /houses/{houseId} {
+  read() { currentUserBelongsToThisHouse(houseId) }
+  write() { currentUserBelongsToThisHouse(houseId) }
+}
+
+path /settings/{uid} {
+  read() { isCurrentUser(uid) }
+  write() { isCurrentUser(uid) }
+}
+
+isCurrentUser(uid) { auth != null && auth.uid == uid }
+// prior(root) is needed otherwise firepase changes it to some weird parent strucute in the write block
+currentUserBelongsToThisHouse(houseId) { 
+  return prior(root)
+          .child('houses')
+          .child(houseId)
+          .child('users')
+          .child(auth.uid)
+          .val() != null 
+}
