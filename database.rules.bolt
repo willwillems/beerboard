@@ -1,9 +1,9 @@
-path /history/{uid} {
-  read() { true } // { isCurrentUser(uid) }
-  write() { true } // { isCurrentUser(uid) }
+path /history/{houseId} is Object {
+  read() { currentUserBelongsToThisHouse(houseId) }
+  write() { currentUserBelongsToThisHouse(houseId) }
 }
 
-path /history/{uid}/{entry} is HistoryEntry;
+path /history/{houseId}/{uid}/{entry} is HistoryEntry;
 
 type HistoryEntry {
   beers: Number,
