@@ -6,7 +6,6 @@
 
 <script>
 import store from './vuex/store'
-import firebase from './firebase'
 
 export default {
   store,
