@@ -4,7 +4,8 @@ const state = {
   cart: [],
   board: [],
   settingsMenuOpen: false,
-  authModalIsActive: false
+  authModalIsActive: false,
+  serverConnectionActive: true
 }
 
 const mutations = {
@@ -19,6 +20,9 @@ const mutations = {
   },
   setAuthModal (state, {newState}) {
     state.authModalIsActive = newState
+  },
+  setServerConnectionState (state, {newState}) {
+    state.serverConnectionActive = newState
   },
   clearCart (state) {
     state.cart = []

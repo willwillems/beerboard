@@ -1,15 +1,31 @@
-<template>
-  <div id="app" class="noselect">
-    <router-view></router-view>
-  </div>
+<template lang="jade">
+  #app.noselect
+    modal
+    router-view
 </template>
 
 <script>
+import modal from './components/modal'
 import store from './vuex/store'
+import {firebaseApp} from './firebase'
 
 export default {
   store,
-  name: 'app'
+  name: 'app',
+  components: {
+    modal
+  },
+  created: function () {
+    firebaseApp.database().ref(".info/connected")
+    .on("value", function (snapshot) {
+      this.$store.commit('setServerConnectionState', {newState: snapshot.val()})
+      if (snapshot.val() === true) {
+        // d
+      } else {
+        alert("not connected")
+      }
+    })
+  }
 }
 </script>
 
