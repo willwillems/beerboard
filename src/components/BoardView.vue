@@ -9,6 +9,7 @@
 
 <script>
 import {firebaseApp} from '@/firebase'
+import {addBeerToUser, entryExistInFirebase, dbMutationsStore} from '@/firebaseFunctions'
 
 import Board from '@/components/BoardView/Board'
 import MenuBar from '@/components/BoardView/MenuBar'
@@ -57,6 +58,19 @@ export default {
       }
       console.log('authstatechanged', user)
     })
+    // Send data that was lost in previous session
+    this.checkAndSendLocalData()
+  },
+  methods: {
+    checkAndSendLocalData: function () {
+      var that = this
+      dbMutationsStore.iterate(function (val, key) {
+        if (!entryExistInFirebase(`history/${val.uid}/`, key)) {
+          addBeerToUser(val, !that.$store.state.appstate.serverConnectionActive)
+        }
+        dbMutationsStore.removeItem(key).catch(console.log)
+      })
+    }
   }
 }
 </script>

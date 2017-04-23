@@ -1,15 +1,24 @@
-import * as lf from "localforage"
+import * as localforage from "localforage"
 import {firebaseApp} from '@/firebase'
 
 const db = firebaseApp.database()
 
-export const addBeerToUser = function ({uid, beersInCart}, storeMutationsLocally) {
+export const dbMutationsStore = localforage.createInstance({
+  name: "stored database mutations"
+})
+
+export const addBeerToUser = function ({uid, beersInCart, time}, storeMutationsLocally) {
+  let timeOfTransaction = (new Date()).getTime()
+  if (time) {
+    timeOfTransaction = time
+  }
+
   db.ref(`houses/4356729193/users/${uid}`).transaction(function (user) {
+    if (user === null) return 0
     user.beers += beersInCart
     return user
   })
 
-  const timeOfTransaction = (new Date()).getTime()
   db.ref(`history/${uid}/${timeOfTransaction}`).set({
     time: timeOfTransaction,
     beers: beersInCart,
@@ -17,7 +26,7 @@ export const addBeerToUser = function ({uid, beersInCart}, storeMutationsLocally
   })
 
   if (storeMutationsLocally) {
-    lf.setItem(timeOfTransaction, {
+    dbMutationsStore.setItem(String(timeOfTransaction), {
       time: timeOfTransaction,
       uid,
       beersInCart
@@ -25,6 +34,12 @@ export const addBeerToUser = function ({uid, beersInCart}, storeMutationsLocally
       console.log(err)
     })
   }
+}
+
+export const entryExistInFirebase = function (path, key) {
+  db.ref(path).once('value', function (snapshot) {
+    return snapshot.exists()
+  })
 }
 
 export const logUser = function () {
