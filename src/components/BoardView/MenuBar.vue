@@ -26,7 +26,10 @@ export default {
     },
     updateClock () {
       const date = new Date()
-      this.clockTime = `${date.getHours()}:${date.getMinutes()}`
+      const lz = num => ("00" + num).slice(-2) // add leading zeroes
+      const hours = lz(date.getHours())
+      const minutes = lz(date.getMinutes())
+      this.clockTime = `${hours}:${minutes}`
     }
   }
 }
