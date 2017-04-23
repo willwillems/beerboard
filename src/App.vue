@@ -16,14 +16,10 @@ export default {
     modal
   },
   created: function () {
+    var that = this
     firebaseApp.database().ref(".info/connected")
     .on("value", function (snapshot) {
-      this.$store.commit('setServerConnectionState', {newState: snapshot.val()})
-      if (snapshot.val() === true) {
-        // d
-      } else {
-        alert("not connected")
-      }
+      that.$store.commit('setServerConnectionState', {newState: snapshot.val()})
     })
   }
 }
