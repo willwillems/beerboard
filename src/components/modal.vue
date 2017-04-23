@@ -39,7 +39,6 @@ export default {
     background-color: white;
     border: solid 1px #666;
     border-radius: 8px;
-    opacity: 0.95;
     width: 300px;
     height: 60px;
     min-height: calc(0.8em + 2*6px + 2*1px + 2*10px); // button with padding
