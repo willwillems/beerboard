@@ -24,6 +24,6 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'quotes': [0, "double", { "allowTemplateLiterals": true }],
-    'no-unused-vars': [1, { "vars": "all", "args": "after-used" }]
+    'no-unused-vars': [0, { "vars": "all", "args": "after-used" }]
   }
 }
