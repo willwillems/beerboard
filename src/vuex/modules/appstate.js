@@ -48,7 +48,7 @@ const actions = {
   checkCartOut ({ state, commit }) {
     // console.log(state.cart)
     state.cart.forEach(function (user) {
-      addBeerToUser(user)
+      addBeerToUser(user, !state.serverConnectionActive)
     })
     commit('clearCart')
   }
