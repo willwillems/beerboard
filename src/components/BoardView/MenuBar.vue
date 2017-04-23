@@ -1,7 +1,7 @@
 <template lang="jade">
   .bar
     .menu-element#logo(@click="signOut") BB
-    .menu-element#time-date 15:33
+    .menu-element#time-date {{clockTime}}
     .menu-element#settings
       i.material-icons(@click="$store.commit('toggleSettings')") settings
 </template>
@@ -11,9 +11,22 @@ import {signUserOut} from '@/firebaseFunctions'
 
 export default {
   name: 'menu-bar',
+  data: function () {
+    return {
+      clockTime: ""
+    }
+  },
+  mounted () {
+    var self = this
+    setInterval(function () { self.updateClock() }, 1000)
+  },
   methods: {
     signOut () {
       signUserOut().then(() => console.log("signed out"))
+    },
+    updateClock () {
+      const date = new Date()
+      this.clockTime = `${date.getHours()}:${date.getMinutes()}`
     }
   }
 }
