@@ -30,12 +30,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+$board-backgroundcolor: #F6F6F6;
+
 .main {
   height: 100%;
   width: 100%;
   position: fixed;
   top: 40px;
-  background-color: #F6F6F6;
+  background-color: $board-backgroundcolor;
   display: flex;
 }
 
