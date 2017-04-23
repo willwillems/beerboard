@@ -21,6 +21,7 @@ export default {
   methods: { // No arrow functions here for thas gets messed up, naturally
     clicked (text) {
       console.log(text)
+      this.modalIsActive = !this.modalIsActive
     }
   }
 }
