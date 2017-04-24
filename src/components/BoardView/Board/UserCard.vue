@@ -82,6 +82,7 @@ $beer-count-radius: 0.3*$card-width;
 .name {
   font-size: 1em;
   margin-top: 5px;
+  margin-bottom: 3px;
 }
 
 .title {
