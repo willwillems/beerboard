@@ -38,8 +38,13 @@ $pop-up-width: 200px;
     border-bottom: 1px solid darkgray;
     text-align: left;
 
+    &:first-child {
+        border-radius: 7px 7px 0px 0px; // border radius - border
+    }
+
     &:last-child {
         border: 0;
+        border-radius: 0px 0px 7px 7px; // border radius - border
     }
 
     &:hover {
