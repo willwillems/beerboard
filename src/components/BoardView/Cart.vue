@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .main(@drop="drop", @dragover="dragover")
     // This overlay is because people often click inaccurate on touch screens
     .check-out-overlay(@click="$store.dispatch('checkCartOut')")

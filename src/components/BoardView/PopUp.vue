@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
     .pop-up(v-if="$store.state.appstate.settingsMenuOpen")
       .menu-item lol
       .menu-item lol

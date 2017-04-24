@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .main
     user-card(v-for="user in boardUsersArray", :user="user")
 </template>

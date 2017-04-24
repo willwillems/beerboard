@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .bar
     .menu-element#logo(@click="signOut") BB
     .menu-element#time-date {{clockTime}}

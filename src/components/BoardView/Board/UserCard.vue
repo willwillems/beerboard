@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .card(draggable="true", @dragstart="startDrag", :id="user.uid")
     .beer-count-circle 
       .beer-count {{user.beers}}

@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .main
     auth-modal
     menu-bar

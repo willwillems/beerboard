@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   .auth-modal(v-show="$store.state.appstate.authModalIsActive")
     #firebaseui-auth-container  
 </template>

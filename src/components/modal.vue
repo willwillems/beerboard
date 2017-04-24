@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
     .modal(:class="{active: modalIsActive}")
         .title {{modalContent.title}}
         .content {{modalContent.content}}
