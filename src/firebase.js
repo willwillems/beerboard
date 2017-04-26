@@ -21,6 +21,11 @@ export default function () {
       source: db.ref('houses/4356729193/users'),
       // optionally bind as an object
       asObject: true
+    },
+    user: {
+      source: db.ref('houses/4356729193/users/lsPLXjCdZyOKWDF0570kfe1Le5e2'),
+      // optionally bind as an object
+      asObject: true
     }
   }
 }
