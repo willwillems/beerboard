@@ -6,7 +6,7 @@
     .name {{user.name}}
     .title {{user.title}}
     .progress-bar
-      .done(:style="'width: ' + user.beers + '%;'")
+      .done(:style="'width: ' + user.beers + '%; background-color: ' + user.color + ';'")
 </template>
 
 <script>
