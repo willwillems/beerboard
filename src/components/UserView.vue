@@ -4,20 +4,28 @@
       .title User
       .divider
       .content-next-to-card 
-        input(style="max-width: 100px;")
+        label(for="beers-input") Beers
+        input#beers-input(type="number", v-model.number="user.beers")
+        p
+        // Little trick here below, to use button for file select
+        label(for="file-input") Upload picture
+        button#file-select(onclick="document.getElementById('file-input').click();") Upload image
+        input(id="file-input", type="file", name="name", style="display: none;")
       user-card(:user="user")
       label(for="name-input") Name
-      input#name-input(type="text")
+      input#name-input(type="text", v-model.trim="user.name")
       p
       label Colors
       .color-selector
         span(v-for="color in colors")
-          input(:id="color.name", type="radio", name="colorSelector")
+          input(type="radio", v-model="user.color" v-bind:value="color.code", :id="color.name", name="colorSelector")
           label(:for="color.name")
             span(:style="'background-color:' + color.code")
 </template>
 
 <script>
+import firebase from '@/firebase'
+
 import UserCard from './BoardView/Board/UserCard'
 
 export default {
@@ -25,15 +33,9 @@ export default {
   components: {
     UserCard
   },
+  firebase,
   data: function () {
     return {
-      user: {
-        name: "Rutger",
-        uid: 32467891,
-        img: "https://graph.facebook.com/100001764027428/picture?width=999&height=999",
-        title: "Bierkoning 2017",
-        beers: 78
-      },
       colors: [
         {
           name: "teal",
@@ -81,7 +83,7 @@ $user-view-backgroundcolor: #F6F6F6;
 }
 
 .content-next-to-card {
-    width: 12 0px;
+    width: 120px;
     float: right;
     height: 200px;
     margin: 20px 0px 10px 20px;
@@ -90,7 +92,8 @@ $user-view-backgroundcolor: #F6F6F6;
 .container {
   width: 300px;
 
-  input[type="text"]  {
+  input[type="text"], input[type="number"], button  {
+    background-color: white;
     border: solid 1px lightgray;
     border-radius: 5px;
     height: 2rem;
@@ -140,6 +143,19 @@ label {
 
 #name-input {
     width: calc(100% - 20px); // container width minus padding
+}
+
+#beers-input {
+  width: 100px;
+}
+
+#file-select {
+  color: gray;
+  font-weight: 500;
+  width: 120px;
+  &:hover {
+    color: black;
+  }
 }
 
 .title {
