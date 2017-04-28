@@ -19,10 +19,17 @@ export const addBeerToUser = function ({uid, beersInCart, time}, storeMutationsL
     return user
   })
 
-  db.ref(`history/${uid}/${timeOfTransaction}`).set({
-    time: timeOfTransaction,
-    beers: beersInCart,
-    metaData: false
+  const houseId = "4356729193" // temp
+  // Get a key for a new Post.
+  const historyRef = db.ref(`history/${houseId}/${uid}/`)
+  const newKey = historyRef.push().key
+
+  historyRef.update({
+    [newKey]: {
+      time: timeOfTransaction,
+      beers: beersInCart,
+      metaData: false
+    }
   })
 
   if (storeMutationsLocally) {
