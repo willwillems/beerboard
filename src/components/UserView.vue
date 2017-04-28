@@ -5,28 +5,33 @@
       .divider
       .content-next-to-card 
         label(for="beers-input") Beers
-        input#beers-input(type="number", v-model.number="user.beers")
+        div
+          input#beers-input(type="number", v-model.number="userBeers")
+          // button set
         p
         // Little trick here below, to use button for file select
         label(for="file-input") Upload picture
         button#file-select(onclick="document.getElementById('file-input').click();") Upload image
-        input(id="file-input", type="file", name="name", style="display: none;")
+        input(@change="onProfilePicChange", id="file-input", type="file", name="name", style="display: none;")
       user-card(:user="user")
       label(for="name-input") Name
-      input#name-input(type="text", v-model.trim="user.name")
+      input#name-input(type="text", v-model.trim="userName")
       p
       label Colors
       .color-selector
         span(v-for="color in colors")
-          input(type="radio", v-model="user.color" v-bind:value="color.code", :id="color.name", name="colorSelector")
+          input(type="radio", v-model="userColor" :value="color.code", :id="color.name", name="colorSelector")
           label(:for="color.name")
             span(:style="'background-color:' + color.code")
 </template>
 
 <script>
-import firebase from '@/firebase'
+import firebase, {firebaseApp} from '@/firebase'
 
 import UserCard from './BoardView/Board/UserCard'
+
+const db = firebaseApp.database()
+const storage = firebaseApp.storage()
 
 export default {
   name: "UserView",
@@ -61,10 +66,49 @@ export default {
           name: "indigo",
           code: "#3F51B5"
         }
-      ]
+      ],
+      profilePicFile: ""
     }
   },
+  created () {
+    console.log(this)
+  },
   methods: { // No arrow functions here for thas gets messed up, naturally
+    onProfilePicChange (e) {
+      const that = this
+      const files = e.target.files || e.dataTransfer.files
+      if (!files.length) return
+      storage.ref(`profilepic/${this.user.uid}`).put(files[0]).then(function (snap) {
+        that.$firebaseRefs.user.child("img").set(snap.downloadURL)
+      })
+    }
+  },
+  computed: {
+    userName: {
+      get: function () {
+        return this.user.name
+      },
+      set: function (newValue) {
+        this.$firebaseRefs.user.child("name").set(newValue)
+      }
+    },
+    userBeers: {
+      // This might be better suited with a transaction and a set button
+      get: function () {
+        return this.user.beers
+      },
+      set: function (newValue) {
+        this.$firebaseRefs.user.child("beers").set(newValue)
+      }
+    },
+    userColor: {
+      get: function () {
+        return this.user.name
+      },
+      set: function (newValue) {
+        this.$firebaseRefs.user.child("color").set(newValue)
+      }
+    }
   }
 }
 </script>
@@ -105,6 +149,13 @@ $user-view-backgroundcolor: #F6F6F6;
       outline: none; // disable default action
     }
     
+  }
+  button {
+    color: gray;
+    font-weight: 500;
+    &:hover {
+      color: black;
+    }
   }
 }
 
@@ -150,12 +201,7 @@ label {
 }
 
 #file-select {
-  color: gray;
-  font-weight: 500;
   width: 120px;
-  &:hover {
-    color: black;
-  }
 }
 
 .title {
