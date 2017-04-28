@@ -29,7 +29,7 @@ export default {
 html {
   height: 100%;
   width: 100%;
-  background-color: teal;
+  background-color: #F6F6F6;
 }
 body {
   height: 100%;
@@ -43,7 +43,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #F6F6F6;
+  color: #2c3e50;
 }
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
