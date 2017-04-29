@@ -7,16 +7,14 @@ import VueFire from 'vuefire'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-import firebase from './firebase'
 
 Vue.use(VueFire)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+export default new Vue({
   el: '#app',
-  firebase,
   router,
   template: '<App/>',
   components: { App }
