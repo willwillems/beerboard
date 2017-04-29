@@ -2,6 +2,12 @@
 
 > A simple central way to mange the ammount of beers consumed in a group.
 
+## Demo
+To see the basics in action you can login [here](https://bierbord.nl/) with the following credentials:
+
+    email:    test123@test.nl
+    password: test123
+
 ## Build Setup
 
 ``` bash
