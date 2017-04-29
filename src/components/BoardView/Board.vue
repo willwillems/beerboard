@@ -34,6 +34,8 @@ $board-backgroundcolor: #F6F6F6;
   top: 40px;
   background-color: $board-backgroundcolor;
   display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 </style>

@@ -33,7 +33,7 @@ $beer-count-radius: 0.3*$card-width;
     position: relative;
     height: $card-height;
     width: $card-width;
-    margin: 20px;
+    margin: 5px 10px;
     background-color: $prim-white;
     border-radius: 5px;
     overflow: hidden;
