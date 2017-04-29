@@ -15,7 +15,7 @@ export default {
         content: "When thou gaze long into an abyss, the abyss will also gaze into thee",
         button: "click me!"
       },
-      modalIsActive: true
+      modalIsActive: false
     }
   },
   methods: { // No arrow functions here for thas gets messed up, naturally
