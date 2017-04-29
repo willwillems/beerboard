@@ -48,7 +48,7 @@ export default {
     cart () {
       const state = this.$store.state.appstate.cart
       return state.map((val) => {
-        return Object.assign({}, val, this.boardUsers[val.uid])
+        return Object.assign({}, val, this.boardUsersArray[val.uid])
       })
     },
     usersInCart () {
