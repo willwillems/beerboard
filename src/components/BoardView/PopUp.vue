@@ -1,11 +1,13 @@
 <template lang="pug">
     .pop-up(v-if="$store.state.appstate.settingsMenuOpen")
-      .menu-item lol
-      .menu-item lol
-      .menu-item lol
+      .menu-item(@click="$router.push('')") Home
+      .menu-item(@click="$router.push('user')") User
+      .menu-item(@click="signOut") Logout
 </template>
 
 <script>
+import {signUserOut} from '@/firebaseFunctions'
+
 export default {
   name: "PopUp",
   data: function () {
@@ -13,6 +15,9 @@ export default {
     }
   },
   methods: { // No arrow functions here for thas gets messed up, naturally
+    signOut () {
+      signUserOut().then(() => console.log("signed out"))
+    }
   }
 }
 </script>
