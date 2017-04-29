@@ -1,5 +1,5 @@
 import * as localforage from "localforage"
-import {firebaseApp} from '@/firebase'
+import {firebaseApp, houseID} from '@/firebase'
 
 const db = firebaseApp.database()
 
@@ -13,15 +13,14 @@ export const addBeerToUser = function ({uid, beersInCart, time}, storeMutationsL
     timeOfTransaction = time
   }
 
-  db.ref(`houses/4356729193/users/${uid}`).transaction(function (user) {
+  db.ref(`houses/${houseID()}/users/${uid}`).transaction(function (user) {
     if (user === null) return 0
     user.beers += beersInCart
     return user
   })
 
-  const houseId = "4356729193" // temp
   // Get a key for a new Post.
-  const historyRef = db.ref(`history/${houseId}/${uid}/`)
+  const historyRef = db.ref(`history/${houseID()}/${uid}/`)
   historyRef.push({
     time: timeOfTransaction,
     beers: beersInCart,

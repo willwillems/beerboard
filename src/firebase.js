@@ -14,6 +14,9 @@ export const db = firebase.database()
 
 export var firebaseApp = firebase
 
+var house = ""
+export const houseID = () => house
+
 export const activateFirebaseUserRefs = function (vm) {
   /*
   This funky construction takes the VueComponent(this) and updates
@@ -27,7 +30,7 @@ export const activateFirebaseUserRefs = function (vm) {
     if (authUser) {
       // first read the house from the db that corresponds with the user
       db.ref(`/settings/${authUser.uid}`).once('value').then(function (snapshot) {
-        const house = snapshot.val().house
+        house = snapshot.val().house
         vm.$bindAsObject('boardUsersArray', db.ref(`houses/${house}/users`))
         vm.$bindAsArray('boardUsers', db.ref(`houses/${house}/users`))
         vm.$bindAsObject('user', db.ref(`houses/${house}/users/${authUser.uid}`))
