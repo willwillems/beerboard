@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import firebase, {firebaseApp} from '@/firebase'
+import {activateFirebaseUserRefs, firebasePlaceholders, firebaseApp} from '@/firebase'
 
 import UserCard from './BoardView/Board/UserCard'
 
@@ -38,7 +38,6 @@ export default {
   components: {
     UserCard
   },
-  firebase,
   data: function () {
     return {
       colors: [
@@ -67,11 +66,12 @@ export default {
           code: "#3F51B5"
         }
       ],
-      profilePicFile: ""
+      profilePicFile: "",
+      ...firebasePlaceholders
     }
   },
   created () {
-    console.log(this)
+    activateFirebaseUserRefs(this)
   },
   methods: { // No arrow functions here for thas gets messed up, naturally
     onProfilePicChange (e) {

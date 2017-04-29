@@ -26,19 +26,22 @@
 </template>
 
 <script>
-import firebase from '@/firebase'
+import {activateFirebaseUserRefs, firebasePlaceholders} from '@/firebase'
 
 export default {
   name: 'cart',
-  firebase,
   props: {
     cartList: Array
+  },
+  created () {
+    activateFirebaseUserRefs(this)
   },
   data: function () {
     return {
       classObject: {
         'drag-over': false
-      }
+      },
+      ...firebasePlaceholders
     }
   },
   computed: {

@@ -1,28 +1,23 @@
 <template lang="pug">
   .main
-    user-card(v-for="user in boardUsersArray", :user="user")
+    user-card(v-for="user in boardUsers", :user="user")
 </template>
 
 <script>
 import UserCard from '@/components/BoardView/Board/UserCard'
-import firebase from '@/firebase'
+import {activateFirebaseUserRefs, firebasePlaceholders} from '@/firebase'
 
 export default {
   name: 'board',
-  firebase,
   components: {
     UserCard
   },
+  created () {
+    activateFirebaseUserRefs(this)
+  },
   data: () => {
     return {
-      users: [
-        {
-          name: "Rutger",
-          uid: 32467891,
-          img: "https://graph.facebook.com/100001764027428/picture?width=999&height=999",
-          title: "Bierkoning 2017"
-        }
-      ]
+      ...firebasePlaceholders
     }
   }
 }

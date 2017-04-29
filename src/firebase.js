@@ -10,22 +10,38 @@ firebase.initializeApp({
   storageBucket: c.FIREBASE_STORAGE,
   messagingSenderId: c.FIREBASE_MESSAGE_ID
 })
-const db = firebase.database()
+export const db = firebase.database()
 
 export var firebaseApp = firebase
 
-export default function () {
-  return {
-    boardUsersArray: db.ref('houses/4356729193/users'),
-    boardUsers: {
-      source: db.ref('houses/4356729193/users'),
-      // optionally bind as an object
-      asObject: true
-    },
-    user: {
-      source: db.ref('houses/4356729193/users/lsPLXjCdZyOKWDF0570kfe1Le5e2'),
-      // optionally bind as an object
-      asObject: true
+export const activateFirebaseUserRefs = function (vm) {
+  /*
+  This funky construction takes the VueComponent(this) and updates
+  the values that were previously occupied by the firebasePlaceholders
+  in the data section of the component. This is necessairy because the
+  user uid and the house value are not avaliable at page load so the ref's
+  need to be updated later. This was the DRY-est solution I could find...
+  */
+  let firebaseRefsAreActivated = false
+  const unsubscribe = firebaseApp.auth().onAuthStateChanged((authUser) => {
+    if (authUser) {
+      // first read the house from the db that corresponds with the user
+      db.ref(`/settings/${authUser.uid}`).once('value').then(function (snapshot) {
+        const house = snapshot.val().house
+        vm.$bindAsObject('boardUsersArray', db.ref(`houses/${house}/users`))
+        vm.$bindAsArray('boardUsers', db.ref(`houses/${house}/users`))
+        vm.$bindAsObject('user', db.ref(`houses/${house}/users/${authUser.uid}`))
+        firebaseRefsAreActivated = true
+      })
     }
+  })
+  if (firebaseRefsAreActivated) {
+    unsubscribe()
   }
+}
+
+export const firebasePlaceholders = {
+  boardUsersArray: [],
+  boardUsers: {},
+  user: {}
 }
