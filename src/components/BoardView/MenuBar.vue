@@ -1,14 +1,14 @@
 <template lang="pug">
   .bar
-    .menu-element#logo(@click="signOut") BB
+    .menu-element#server-connection(v-if="!$store.state.appstate.serverConnectionActive")
+      i.material-icons cloud_off
+    .menu-element#logo(v-if="$store.state.appstate.serverConnectionActive") BB
     .menu-element#time-date {{clockTime}}
     .menu-element#settings
       i.material-icons(@click="$store.commit('toggleSettings')") settings
 </template>
 
 <script>
-import {signUserOut} from '@/firebaseFunctions'
-
 export default {
   name: 'menu-bar',
   data: function () {
@@ -21,9 +21,6 @@ export default {
     setInterval(function () { self.updateClock() }, 1000)
   },
   methods: {
-    signOut () {
-      signUserOut().then(() => console.log("signed out"))
-    },
     updateClock () {
       const date = new Date()
       const lz = num => ("00" + num).slice(-2) // add leading zeroes
@@ -68,6 +65,20 @@ $bar-height: 40px;
   float: left;
   opacity: 0.9;
   font-weight: 600;
+}
+
+#server-connection  {
+  float: left;
+  color: red;
+  animation: blinker 3s ease-in-out infinite;
+  .material-icons {
+    font-size: 1em;
+    line-height: $bar-height;
+  }
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
 }
 
 #time-date {
