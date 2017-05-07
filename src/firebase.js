@@ -34,6 +34,7 @@ export const activateFirebaseUserRefs = function (vm) {
         vm.$bindAsObject('boardUsersArray', db.ref(`houses/${house}/users`))
         vm.$bindAsArray('boardUsers', db.ref(`houses/${house}/users`))
         vm.$bindAsObject('user', db.ref(`houses/${house}/users/${authUser.uid}`))
+        vm.$bindAsObject('userHistory', db.ref(`history/${house}/${authUser.uid}`))
         firebaseRefsAreActivated = true
       })
     }
@@ -46,5 +47,6 @@ export const activateFirebaseUserRefs = function (vm) {
 export const firebasePlaceholders = {
   boardUsersArray: [],
   boardUsers: {},
-  user: {}
+  user: {},
+  userHistory: {}
 }
