@@ -7,7 +7,7 @@
         tr
           th Beers
           th Time
-        tr(v-for="entry in userHistory")
+        tr(v-for="entry in userHistory", v-if="entry.beers")
           td {{entry.beers}}
           td {{date(entry.time)}}
 </template>
