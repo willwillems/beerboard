@@ -3,7 +3,18 @@
     .container
       .title(@click="test") Admin
       .divider
-      table
+      p 
+      h3 Current
+      table(cellspacing="0", cellpadding="0", @click="downloadUserdata")
+        tr
+          th Name
+          th Beers
+        tr(v-for="entry in boardUsers", v-if="entry.beers")
+          td {{entry.name}}
+          td {{entry.beers}}
+      p 
+      h3 History
+      table(cellspacing="0", cellpadding="0")
         tr
           th Beers
           th Time
@@ -40,6 +51,17 @@ export default {
     },
     date (time) {
       return new Date(time)
+    },
+    convertUserdataToCSV (data) {
+      let lineArray = []
+      data.forEach(function (infoArray, index) {
+        const line = Object.values(infoArray).join(",")
+        lineArray.push(index === 0 ? "data:text/csv;charset=utf-8," + line : line)
+      })
+      return lineArray.join("\n")
+    },
+    downloadUserdata () {
+      window.open(encodeURI(this.convertUserdataToCSV(this.boardUsers)))
     }
   },
   computed: {
@@ -61,7 +83,7 @@ $admin-view-backgroundcolor: #F6F6F6;
 }
 
 .container {
-  width: 300px;
+  width: 600px;
 
   input[type="text"], input[type="number"], button  {
     background-color: white;
@@ -84,7 +106,84 @@ $admin-view-backgroundcolor: #F6F6F6;
       color: black;
     }
   }
+  
 }
+
+
+////// http://codepen.io/alassetter/pen/cyrfB
+$table-border-radius: 5px;
+
+th {
+  color: #D5DDE5;;
+  background: #1b1e24;
+  border-bottom: 3px solid teal;
+  border-right: 1px solid #343a45;
+  font-size: 16px;
+  font-weight: 100;
+  padding: 10px 15px;
+  text-align: left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+
+th:first-child {
+  border-top-left-radius: $table-border-radius;
+}
+ 
+th:last-child {
+  border-top-right-radius: $table-border-radius;
+  border-right: none;
+}
+  
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:12px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: $table-border-radius;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius: $table-border-radius;
+}
+ 
+td {
+  background: #FFFFFF;
+  padding: 10px 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 18px;
+  text-shadow:  -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right:  1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+
+
+
+//////
 
 label {
   font-size: 0.8em;
