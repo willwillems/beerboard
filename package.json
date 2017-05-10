@@ -8,8 +8,9 @@
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
+    "staging": "yarn build && yarn bolt && firebase deploy -P staging",
     "deploy": "yarn build && yarn bolt && firebase deploy",
-    "deploy-firebase": "firebase deploy",
+    "deploy-nobuild": "firebase deploy",
     "bolt": "firebase-bolt database.rules.bolt"
   },
   "dependencies": {

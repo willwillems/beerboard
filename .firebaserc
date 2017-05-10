@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "beerboard-1367"
+    "default": "beerboard-1367",
+    "staging": "beerboard-staging"
   }
 }
