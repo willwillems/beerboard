@@ -12,6 +12,7 @@
         tr(v-for="entry in boardUsers", v-if="entry.beers")
           td {{entry.name}}
           td {{entry.beers}}
+      i(@click="downloadUserdata") Download
       p 
       h3 History
       table(cellspacing="0", cellpadding="0")
