@@ -1,6 +1,6 @@
 <template lang="pug">
   .main
-    user-card(v-for="user in boardUsers", :user="user")
+    user-card(v-for="user in boardUsers", :key="user.uid", :user="user")
 </template>
 
 <script>
