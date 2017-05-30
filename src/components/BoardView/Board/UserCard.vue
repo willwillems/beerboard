@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card(draggable="true", @dragstart="startDrag", :id="user.uid")
+  .card(draggable="true", @dragstart="startDrag", @touchstart="startTouch", @touchend="stopTouch" :id="user.uid")
     .beer-count-circle 
       .beer-count {{user.beers}}
     .user-image(:style="'background-image: url(' + user.img + ')'")
@@ -13,9 +13,29 @@
 export default {
   name: 'user-card',
   props: ['user'],
+  data () {
+    return {
+      timer: undefined
+    }
+  },
   methods: {
-    startDrag: function (e) {
+    startDrag (e) {
       e.dataTransfer.setData("uid", e.target.id)
+    },
+    startTouch () {
+      this.$store.commit("activateTouchOverlayWithUser", {user: this.user})
+      var that = this
+      this.timer = setTimeout(function () {
+        that.$store.commit('addUserToCart', {
+          userID: that.user.uid,
+          beers: 1
+        })
+        that.startTouch() // recursive
+      }, 1500)
+    },
+    stopTouch (e) {
+      this.$store.commit("deactivateTouchOverlay")
+      clearTimeout(this.timer)
     }
   }
 }
@@ -23,16 +43,26 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+$break-small: 480px;
+
 $prim-white: white;
 
 $card-width: 10rem;
 $card-height: $card-width*1.3;
 $beer-count-radius: 0.3*$card-width;
 
+$card-width-mobile: 4rem;
+$card-height-mobile: $card-width-mobile*1.3;
+$beer-count-radius-mobile: 0.3*$card-width-mobile;
+
 .card {
     position: relative;
     height: $card-height;
     width: $card-width;
+    @media screen and (max-width: $break-small) {
+      height: $card-height-mobile;
+      width: $card-width-mobile;
+    }
     margin: 5px 10px;
     background-color: $prim-white;
     border-radius: 5px;
@@ -72,6 +102,10 @@ $beer-count-radius: 0.3*$card-width;
 .user-image {
   width: $card-width;
   height: $card-width;
+  @media screen and (max-width: $break-small) {
+    height: $card-height-mobile;
+    width: $card-width-mobile;
+  }
   background-size: cover;
 }
 

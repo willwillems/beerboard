@@ -1,16 +1,19 @@
 <template lang="pug">
   .main
     user-card(v-for="user in boardUsers", :key="user.uid", :user="user")
+    user-mobile-loading(:user="boardUsers[0]")
 </template>
 
 <script>
 import UserCard from '@/components/BoardView/Board/UserCard'
+import UserMobileLoading from '@/components/BoardView/Board/UserMobileLoading'
 import {activateFirebaseUserRefs, firebasePlaceholders} from '@/firebase'
 
 export default {
   name: 'board',
   components: {
-    UserCard
+    UserCard,
+    UserMobileLoading
   },
   created () {
     activateFirebaseUserRefs(this)
@@ -18,6 +21,11 @@ export default {
   data: () => {
     return {
       ...firebasePlaceholders
+    }
+  },
+  watch: {
+    boardUsers (val) {
+      console.log("whatcher", val)
     }
   }
 }

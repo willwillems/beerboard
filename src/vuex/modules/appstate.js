@@ -3,6 +3,7 @@ import {addBeerToUser} from '../../firebaseFunctions'
 const state = {
   cart: [],
   board: [],
+  touchOverlayUser: {},
   settingsMenuOpen: false,
   authModalIsActive: false,
   serverConnectionActive: true
@@ -41,6 +42,12 @@ const mutations = {
 
     console.log(userIndex, state.cart, userID)
     state.cart[userIndex].beersInCart += beers
+  },
+  activateTouchOverlayWithUser (state, {user}) {
+    state.touchOverlayUser = user
+  },
+  deactivateTouchOverlay (state) {
+    state.touchOverlayUser = {}
   }
 }
 
