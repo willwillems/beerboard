@@ -1,0 +1,16 @@
+{
+  "short_name": "BierBord",
+  "name": "Bierbord's beer manager",
+  "icons": [
+    {
+      "src": "/static/icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "orientation": "portrait",
+  "display": "standalone",
+  "background_color": "#F6F6F6",
+  "theme_color": "#F6F6F6"
+}
