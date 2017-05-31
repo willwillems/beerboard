@@ -9,10 +9,12 @@
         tr
           th Name
           th Beers
-        tr(v-for="entry in boardUsers", v-if="entry.beers")
+        tr(v-for="entry in boardUsers", v-if="entry.name")
           td {{entry.name}}
           td {{entry.beers}}
       i(@click="downloadUserdata") Download
+      p
+      i(@click="resetBeerValues") Reset beer values
       p 
       h3 History
       table(cellspacing="0", cellpadding="0")
@@ -63,6 +65,14 @@ export default {
     },
     downloadUserdata () {
       window.open(encodeURI(this.convertUserdataToCSV(this.boardUsers)))
+    },
+    resetBeerValues () {
+      this.boardUsers.forEach((e) => {
+        this.$firebaseRefs.boardUsers
+          .child(e[".key"])
+          .child("beers")
+          .set(0)
+      })
     }
   },
   computed: {
