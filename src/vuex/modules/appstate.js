@@ -30,7 +30,6 @@ const mutations = {
   },
   addUserToCart (state, {userID, beers}) {
     let userIndex = state.cart.findIndex(obj => {
-      console.log(obj.uid, userID)
       return obj.uid === userID
     })
     // A try catch structure might be better
@@ -42,6 +41,18 @@ const mutations = {
 
     console.log(userIndex, state.cart, userID)
     state.cart[userIndex].beersInCart += beers
+  },
+  removeUserFromCart (state, {userID, beers}) {
+    let userIndex = state.cart.findIndex(obj => {
+      return String(obj.uid) === String(userID)
+    })
+    // If the user is not present exit
+    if (userIndex === -1) return
+    state.cart[userIndex].beersInCart -= beers
+    // If there are no beers left delete user form cart
+    if (state.cart[userIndex].beersInCart <= 0) {
+      state.cart.splice(userIndex, 1)
+    }
   },
   activateTouchOverlayWithUser (state, {user}) {
     state.touchOverlayUser = user

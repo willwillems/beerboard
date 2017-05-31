@@ -19,7 +19,8 @@
         .menuitem(
           v-for="(user, i) in cart", 
           :key="user.uid", 
-          :style="'background-image: url(' + user.img + ')'"
+          :style="'background-image: url(' + user.img + ')'",
+          @click="removeFromCart(user.uid)"
         ) 
           .ammount-beers(:style="'background-color: ' + user.color") {{user.beersInCart}}
     
@@ -72,6 +73,12 @@ export default {
     },
     rotateCartList: function () {
       // give menulist a class object
+    },
+    removeFromCart: function (userID) {
+      this.$store.commit('removeUserFromCart', {
+        userID,
+        beers: 1
+      })
     }
   }
 }
