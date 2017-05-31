@@ -36,9 +36,12 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 exports.addUserToDB = functions.auth.user().onCreate(function (event) {
   // Get the uid and display name of the newly created user.
   var uid = event.data.uid
-  var displayName = event.data.displayName || "unknown"
   var email = event.data.email
   var house
+  // Start data for the user
+  var beers
+  var img
+  var name
 
   admin.database()
     .ref(`/invites`)
@@ -47,11 +50,18 @@ exports.addUserToDB = functions.auth.user().onCreate(function (event) {
     .once('value')
     .then(function (snapshot) {
       var invite = snapshot.val()
+      var data
       try {
-        house = invite[Object.keys(invite)[0]].house
+        data = invite[Object.keys(invite)[0]]
       } catch (e) {
         return Promise.reject("No invite was present")
       }
+      house = data.house
+      // If data is specified in the invite use it else use defaults
+      beers = data.beers || 0
+      img = data.img || "/placeholder.png"
+      name = data.name || event.data.displayName || "unknown"
+
       return admin.database()
         .ref(`/settings`)
         .child(uid)
@@ -65,8 +75,9 @@ exports.addUserToDB = functions.auth.user().onCreate(function (event) {
         .ref(`/houses/${house}/users`)
         .child(uid)
         .set({
-          beers: 0,
-          name: displayName,
+          beers,
+          img,
+          name,
           uid
         })
     })
