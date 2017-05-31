@@ -14,8 +14,6 @@ self.oninstall = function (event) {
   })
 }
 
-
-
 self.onactivate = function (event) {
 
 }
