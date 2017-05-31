@@ -21,6 +21,12 @@ path /settings/{uid} {
   write() { isCurrentUser(uid) }
 }
 
+path /invite {
+  read() { false }
+  write() { false }
+  index() = "email"; // increases efficiency with the addUserToDB CF
+}
+
 isCurrentUser(uid) { auth != null && auth.uid == uid }
 // prior(root) is needed otherwise firepase changes it to some weird parent strucute in the write block
 currentUserBelongsToThisHouse(houseId) { 
