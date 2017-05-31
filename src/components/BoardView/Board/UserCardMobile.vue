@@ -58,7 +58,7 @@ $beer-count-radius-mobile: $card-width-mobile*0.18;
   position: absolute;
   margin: 5px; // to create a slight offset from the centre
   border-radius: $beer-count-radius-mobile;
-  background-color: orange;
+  background-color: teal;
   color: white;
   text-align: center;
   font-size: 12px;

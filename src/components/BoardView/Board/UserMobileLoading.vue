@@ -5,8 +5,8 @@
         p
         .timer
             .halfclip
-                .halfcircle#clipped
-            .halfcircle#fixed
+                .halfcircle#clipped(:style="userColorStyle")
+            .halfcircle#fixed(:style="userColorStyle")
             .selected-user(:style="userStyle")
             p.beer-cart-number {{beersInCartOfUser}}
 </template>
@@ -37,6 +37,12 @@ export default {
     },
     userStyle () {
       return `background-image: url(${this.user.img});`
+    },
+    userColorStyle () {
+      return `
+      border-top-color: ${this.user.color};
+      border-left-color: ${this.user.color};
+      `
     }
   }
 }

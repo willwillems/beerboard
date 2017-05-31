@@ -21,7 +21,7 @@
           :key="user.uid", 
           :style="'background-image: url(' + user.img + ')'"
         ) 
-          .ammount-beers {{user.beersInCart}}
+          .ammount-beers(:style="'background-color: ' + user.color") {{user.beersInCart}}
     
 </template>
 
