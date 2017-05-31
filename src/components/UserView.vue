@@ -1,6 +1,7 @@
 <template lang="pug">
   .main
     .container
+      i.material-icons(@click="$router.push('/')") arrow_back
       .title User
       .divider
       .content-next-to-card 
@@ -123,7 +124,7 @@ $user-view-backgroundcolor: #F6F6F6;
     height: 100%;
     width: 100%;
     text-align: left;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .content-next-to-card {
