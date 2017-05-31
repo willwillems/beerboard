@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card(draggable="true", @dragstart="startDrag", @touchstart="startTouch", @touchend="stopTouch" :id="user.uid")
+  .card(draggable="true", @dragstart="startDrag", :id="user.uid")
     .beer-count-circle 
       .beer-count {{user.beers}}
     .user-image(:style="'background-image: url(' + user.img + ')'")
@@ -21,21 +21,6 @@ export default {
   methods: {
     startDrag (e) {
       e.dataTransfer.setData("uid", e.target.id)
-    },
-    startTouch () {
-      this.$store.commit("activateTouchOverlayWithUser", {user: this.user})
-      var that = this
-      this.timer = setTimeout(function () {
-        that.$store.commit('addUserToCart', {
-          userID: that.user.uid,
-          beers: 1
-        })
-        that.startTouch() // recursive
-      }, 1500)
-    },
-    stopTouch (e) {
-      this.$store.commit("deactivateTouchOverlay")
-      clearTimeout(this.timer)
     }
   }
 }
@@ -59,10 +44,6 @@ $beer-count-radius-mobile: 0.3*$card-width-mobile;
     position: relative;
     height: $card-height;
     width: $card-width;
-    @media screen and (max-width: $break-small) {
-      height: $card-height-mobile;
-      width: $card-width-mobile;
-    }
     margin: 5px 10px;
     background-color: $prim-white;
     border-radius: 5px;
@@ -102,10 +83,6 @@ $beer-count-radius-mobile: 0.3*$card-width-mobile;
 .user-image {
   width: $card-width;
   height: $card-width;
-  @media screen and (max-width: $break-small) {
-    height: $card-height-mobile;
-    width: $card-width-mobile;
-  }
   background-size: cover;
 }
 
