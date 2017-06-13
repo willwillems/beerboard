@@ -5,6 +5,7 @@ const state = {
   board: [],
   touchOverlayUser: {},
   settingsMenuOpen: false,
+  settingsMenuVisible: true,
   authModalIsActive: false,
   serverConnectionActive: true
 }
@@ -15,6 +16,9 @@ const mutations = {
   },
   setSettings (state, {newState}) {
     state.settingsMenuOpen = newState
+  },
+  setSettingsMenuVisibility (state, {visible}) {
+    state.settingsMenuVisible = visible
   },
   toggleAuthModal (state) {
     state.authModalIsActive = !state.authModalIsActive

@@ -1,8 +1,9 @@
 <template lang="pug">
-    .pop-up(v-if="$store.state.appstate.settingsMenuOpen")
+    .pop-up(v-if="menuVisible")
       .menu-item(@click="$router.push('')") Home
       .menu-item(@click="$router.push('user')") User
       .menu-item(@click="signOut") Logout
+      .menu-item(@click="hideMenu") Hide Menu
 </template>
 
 <script>
@@ -17,6 +18,16 @@ export default {
   methods: { // No arrow functions here for thas gets messed up, naturally
     signOut () {
       signUserOut().then(() => console.log("signed out"))
+    },
+    hideMenu () {
+      this.$store.commit("setSettingsMenuVisibility", {
+        visible: false
+      })
+    }
+  },
+  computed: {
+    menuVisible () {
+      return this.$store.state.appstate.settingsMenuOpen && this.$store.state.appstate.settingsMenuVisible
     }
   }
 }

@@ -4,7 +4,7 @@
       i.material-icons cloud_off
     .menu-element#logo(v-if="$store.state.appstate.serverConnectionActive") BB
     .menu-element#time-date {{clockTime}}
-    .menu-element#settings
+    .menu-element#settings(v-if="$store.state.appstate.settingsMenuVisible")
       i.material-icons(@click="$store.commit('toggleSettings')") settings
 </template>
 
