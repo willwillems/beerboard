@@ -19,7 +19,14 @@ module.exports = merge(baseWebpackConfig, {
   devtool: '#cheap-module-eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': config.dev.env
+      'process.env': config.dev.env,
+      // firebase prod config
+      "_FIREBASE_DB_": JSON.stringify("https://beerboard-staging.firebaseio.com"),
+      "_FIREBASE_API_KEY_": JSON.stringify("AIzaSyCWjrEqzNL_ndOFiKif2cFQws_yYCYcBx8"),
+      "_FIREBASE_AUTH_": JSON.stringify("beerboard-staging.firebaseapp.com"),
+      "_FIREBASE_PROJECT_ID_": JSON.stringify("beerboard-staging"),
+      "_FIREBASE_STORAGE_": JSON.stringify("beerboard-staging.appspot.com"),
+      "_FIREBASE_MESSAGE_ID_": JSON.stringify("142269005793")
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
