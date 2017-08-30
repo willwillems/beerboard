@@ -37,10 +37,12 @@ export default {
 $auth-modal-backgroundcolor: white;
 
 .auth-modal {
-  width: 75%;
   position: fixed;
+  width: 75%;
+  height: 90%;
   left: 50%;
-  top: 20%;
+  top: 10%;
+  overflow: scroll; // quick fix for when sign up falls outside of screen on some devices
   margin-left: -37.5%;
   z-index: 100;
 }
