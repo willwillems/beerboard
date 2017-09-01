@@ -3,7 +3,8 @@
         p
         i Let go of screen to stop beer addition
         p
-        p.beer-cart-number {{beersInCartOfUser}}
+        p.beer-cart-number 
+          span {{beersInCartOfUser}}
         .timer
           .halfclip
               .halfcircle#clipped(:style="userColorStyle")
@@ -63,6 +64,7 @@ $loading-circle-size: 300px;
 .backdrop {
     position: fixed;
     top: 0px;
+    left: 0px;
     height: 100%;
     width: 100%;
     background-color: white;
@@ -85,13 +87,14 @@ $loading-circle-size: 300px;
   background-size: cover;
 }
 
-// fix this
 .beer-cart-number {
-  position: relative;
-  top: -125px;
-  left: 0px;
+  position: fixed;
+  width: 200px;
+  left: calc(50vw - 100px - 10px);
+  top: calc(50vw - 1.5em - 10px);
   font-size: 12em;
   color: white;
+  text-align: center;
   z-index: 10;
 }
 
