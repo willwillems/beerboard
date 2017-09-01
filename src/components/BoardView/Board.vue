@@ -44,13 +44,14 @@ export default {
 $board-backgroundcolor: #F6F6F6;
 
 .main {
-  height: 100%;
+  height: calc(100% - 40px);
   width: 100%;
   position: fixed;
   top: 40px;
   background-color: $board-backgroundcolor;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   align-content: flex-start;
 }
 

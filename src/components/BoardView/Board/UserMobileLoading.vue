@@ -3,12 +3,12 @@
         p
         i Let go of screen to stop beer addition
         p
+        p.beer-cart-number {{beersInCartOfUser}}
         .timer
-            .halfclip
-                .halfcircle#clipped(:style="userColorStyle")
-            .halfcircle#fixed(:style="userColorStyle")
-            .selected-user(:style="userStyle")
-            p.beer-cart-number {{beersInCartOfUser}}
+          .halfclip
+              .halfcircle#clipped(:style="userColorStyle")
+          .halfcircle#fixed(:style="userColorStyle")
+          .selected-user(:style="userStyle")
 </template>
 
 <script>
@@ -26,9 +26,11 @@ export default {
       const userID = this.user.uid
       // find the user in cart and return the beersInCart property
       try {
-        return this.$store.state.appstate.cart.find(obj => {
-          return obj.uid === userID
-        }).beersInCart
+        return this.$store.state
+          .appstate
+          .cart
+          .find(obj => obj.uid === userID)
+          .beersInCart
       } catch (e) {
         if (e instanceof TypeError) {
           return 0
@@ -68,10 +70,9 @@ $loading-circle-size: 300px;
     z-index: 1;
 }
 .timer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
+  position: fixed;
+  left: calc(50vw - 0.5 * #{$loading-circle-size});
+  top: calc(50vw - 0.5 * #{$loading-circle-size});
   width: $loading-circle-size;
   height: $loading-circle-size;
 }
@@ -86,10 +87,12 @@ $loading-circle-size: 300px;
 
 // fix this
 .beer-cart-number {
-  position: absolute;
-  top: calc(50% - 12em);
-  left: calc(50% - 12em);
+  position: relative;
+  top: -125px;
+  left: 0px;
   font-size: 12em;
+  color: white;
+  z-index: 10;
 }
 
 .halfclip {
