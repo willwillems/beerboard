@@ -43,6 +43,8 @@ export default {
 <style lang="scss" scoped>
 $board-backgroundcolor: #F6F6F6;
 
+$break-small: 640px;
+
 .main {
   height: calc(100% - 40px);
   width: 100%;
@@ -51,8 +53,10 @@ $board-backgroundcolor: #F6F6F6;
   background-color: $board-backgroundcolor;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   align-content: flex-start;
+  @media screen and (max-width: $break-small) {
+    justify-content: space-around; // this badly needs a fix
+  }
 }
 
 </style>
