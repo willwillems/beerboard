@@ -1,7 +1,7 @@
 <template lang="pug">
   .main
     .container
-      i.material-icons(@click="$router.push('/')") arrow_back
+      i.material-icons.clickable(@click="$router.push('/')") arrow_back
       .title User
       .divider
       .content-next-to-card 
@@ -218,5 +218,9 @@ label {
 
 .card {
   margin: 20px 0px 10px 0px;
+}
+
+.clickable {
+  cursor: pointer;
 }
 </style>
