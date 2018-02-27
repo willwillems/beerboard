@@ -1,4 +1,4 @@
-# 🍺BeerBoard
+# 🍺BeerBoard [![Build Status](https://travis-ci.org/NickolasBoyer/beerboard.svg?branch=master)](https://travis-ci.org/NickolasBoyer/beerboard)
 
 > A simple central way to mange the ammount of beers consumed in a group.
 
