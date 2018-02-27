@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     isMobile () {
-      return screen.width <= 640
+      return window.innerWidth <= 480
     }
   },
   watch: {
@@ -43,7 +43,7 @@ export default {
 <style lang="scss" scoped>
 $board-backgroundcolor: #F6F6F6;
 
-$break-small: 640px;
+$break-small: 480px;
 
 .main {
   height: calc(100% - 40px);
@@ -55,7 +55,9 @@ $break-small: 640px;
   flex-wrap: wrap;
   align-content: flex-start;
   @media screen and (max-width: $break-small) {
-    justify-content: space-around; // this badly needs a fix
+    display: grid; // jay new css 
+    grid-template-columns: repeat(4, 1fr); // 4 columns
+    justify-items: center; // icons along centre axis of column
   }
 }
 
