@@ -1,0 +1,1 @@
+console.log("if there are no test no tests are able to fail")
