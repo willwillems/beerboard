@@ -87,6 +87,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 $cart-radius: 250px;
+$mobile-cart-radius: 150px;
 $cart-beeramount-badge-color: #23B883;
 $check-out-button-color: #c70d0d;
 
@@ -260,12 +261,67 @@ $check-out-button-color: #c70d0d;
     to   { transform: rotate(105deg) translateY($cart-radius) rotate(-105deg); }
 }
 
+@keyframes moveinlist-mobile {
+    from { transform: rotate(90deg) translateY($mobile-cart-radius) rotate(-90deg); }
+    to   { transform: rotate(105deg) translateY($mobile-cart-radius) rotate(-105deg); }
+}
+
 .smooth-list-enter-active {
   transition: all 1s;
   animation: moveinlist 0.5s ease;
 }
 .smooth-list-enter, .smooth-list-leave-to /* .smooth-list-leave-active for <2.1.8 */ {
   opacity: 0;
+}
+
+// Alternative circle radius for mobile
+@media screen and (max-width: 480px) {
+  .menulist {
+    @include on-circle($item-count: 16, $circle-size: 2*$mobile-cart-radius, $item-size: 50px);
+  }
+
+
+  .cartbutton {
+    right: 0.2*$mobile-cart-radius;
+    bottom: 0.2*$mobile-cart-radius;
+    font-size: 4em;
+  }
+
+  .check-out-button {
+      right: 20px;
+      bottom: 20px;
+      font-size: 1em;
+  }
+
+  .check-out-overlay {
+    height: $mobile-cart-radius;
+    width: $mobile-cart-radius;
+    bottom: -0.5*$mobile-cart-radius;
+    right: -0.5*$mobile-cart-radius;
+    border-radius: 0.5*$mobile-cart-radius;
+  }
+
+  .menu-circle {
+    height: 2*$mobile-cart-radius;
+    width: 2*$mobile-cart-radius;
+    bottom: -$mobile-cart-radius;
+    right: -$mobile-cart-radius;
+    border-radius: $mobile-cart-radius;
+
+    &.drag-over {
+      height: 2.2*$mobile-cart-radius;
+      width: 2.2*$mobile-cart-radius;
+      bottom: -1.1*$mobile-cart-radius;
+      right: -1.1*$mobile-cart-radius;
+      border-radius: 1.1*$mobile-cart-radius;
+    }
+  }
+
+  // vue transistion class
+  .smooth-list-enter-active {
+    transition: all 1s;
+    animation: mobile-moveinlist 0.5s ease;
+  }
 }
 
 </style>
