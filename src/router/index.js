@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import * as c from '@/constants'
+import { auth } from '@/firebase'
+
 import BoardView from '@/components/BoardView'
 import UserView from '@/components/UserView'
 import HomeView from '@/components/HomeView'
@@ -29,6 +33,19 @@ export default new Router({
       path: '/admin',
       name: 'Admin view',
       component: AdminView
+    },
+    {
+      path: '/demo',
+      name: 'demo route',
+      beforeEnter (to, from, next) {
+        auth.signInWithEmailAndPassword(c.DEMO_EMAIL, c.DEMO_PASSWORD)
+          .then(() => {
+            next({ path: '/' })
+          })
+          .catch(e => {
+            next(e)
+          })
+      }
     }
   ]
 })

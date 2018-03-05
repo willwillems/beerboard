@@ -5,3 +5,5 @@ export const FIREBASE_AUTH = _FIREBASE_AUTH_
 export const FIREBASE_PROJECT_ID = _FIREBASE_PROJECT_ID_
 export const FIREBASE_STORAGE = _FIREBASE_STORAGE_
 export const FIREBASE_MESSAGE_ID = _FIREBASE_MESSAGE_ID_
+export const DEMO_PASSWORD = 'test123'
+export const DEMO_EMAIL = 'test123@test.nl'
