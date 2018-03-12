@@ -85,7 +85,6 @@ main {
   align-items: center;
   flex-flow: column;
   text-align: center;
-  margin-top: 30px;
   padding: 20px;
 }
 
@@ -93,9 +92,6 @@ main > * {
   margin: 20px 0px;
 }
 
-.header {
-  margin: 20px;
-}
 
 .header__title-container {
   display: flex;
