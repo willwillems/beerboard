@@ -122,6 +122,7 @@ export default {
   border-radius: 8px;
   transition: all linear 0.1s;
   margin: 1px 0px; /* to make toom for the hover grow */
+  cursor: pointer;
 }
 
 .tile__section__button:hover {
