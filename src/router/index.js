@@ -15,7 +15,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/board',
       name: 'Board view',
       component: BoardView
     },
@@ -25,7 +25,7 @@ export default new Router({
       component: UserView
     },
     {
-      path: '/home',
+      path: '/',
       name: 'Home view',
       component: HomeView
     },

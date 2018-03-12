@@ -1,76 +1,139 @@
-<template lang="pug">
-  .main
-    .title-container
-      .title Beerboard
-      .subtitle An easy central way to manage your beer usage
-    beer-svg#beersvg
-    .bottom
-      button#learn-more Learn more
-      button#sign-up Sign me up!
+<template>
+  <div id="app">
+    <main>
+      <header class="header">
+        <div class="header__title-container">
+          <img class="header__title-container__logo" src="/static/logo-square.svg"/>
+          <h1 class="header__title-container__text">{{title}}</h1>
+        </div>
+        <i class="header__subtitle">{{subtitle}}</i>
+      </header>
+      <section class="demo-section">
+        <b class="demo-section__text">Check out our demo <a href="https://bierbord.nl/demo">here!</a></b>
+      </section>
+      <section>
+        <plans-tile :tiles="tiles"></plans-tile>
+      </section>
+      <text-section v-for="text in infoTexts" :textData="text" :key="text.title">
+      </text-section>
+    </main>
+  </div>
 </template>
 
 <script>
-import BeerSvg from "./HomeView/BeerSvg"
+import PlansTile from './HomeView/AppPlansTile'
+import TextSection from './HomeView/AppTextSection'
 
 export default {
-  name: "HomeView",
+  name: 'app',
   components: {
-    BeerSvg
+    PlansTile,
+    TextSection
   },
-  data: function () {
+  data () {
     return {
+      title: 'Beerboard',
+      subtitle: 'A simple reliable sollution to your beer managment',
+      infoTexts: [{
+        title: 'What even is this?',
+        text: 'Beerboard is an application developed to track beer consumption in a group of people. This would typically be done for financial reasons and is best used with a conveniently placed wall-mounted tablet or touchscreen computer. Beerboard supports both (touch)computers and larger tablets with a specially designed interface for mobile usage. The app is designed offline first with a focus on data integrity so a spotty wifi-connection will not mess up your data or cause you to lose entries. If you have any other questions feel free to contact us!'
+      }],
+      tiles: {
+        left: {
+          title: "Free",
+          content: `
+                    <p>Completely <i>free</i>, use with <i>unlimited</i> data usage and no other limits!</p>
+                    <ul>
+                      <li>Real time data synchronisation</li>
+                      <li>Detailed usage statistics</li>
+                      <li>Mobile web app</li>
+                    </ul>`,
+          buttonTitle: "Try it!"
+        },
+        right: {
+          title: "€1/month",
+          content: `
+                    <p>Besides everything included in the free tier:</p>
+                    <ul>
+                      <li>Automated emails every month</li>
+                      <li>Personal support</li>
+                      <li>3 month backup of your data</li>
+                    </ul>`,
+          buttonTitle: "Buy it!"
+        }
+      }
     }
-  },
-  methods: { // No arrow functions here for thas gets messed up, naturally
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-.main {
-  button {
-    height: 3em;
-    width: 9em;
-    margin: 0px 10px;
-    font-size: 1rem;
-    background-color: transparent;
-    border: 2px solid black;
-    border-radius: 2em;
-  }
+<!--TODO: add Roboto web font-->
+<style>
+body {
+  margin: 0;
 }
 
-#sign-up {
-  background-color: black;
-  color: white;
+#app {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
 
-.title-container {
-  text-align: left;
-  margin: 40px;
-  .title {
-    font-size: 3em;
-    font-weight: 500;
-  }
-
-  .subtitle {
-    font-size: 14px;
-    font-style: italic;
-    color: #282828;
-  }
-}
-
-#beersvg {
-  width: 200px;
-}
-
-.bottom {
-  position: absolute;
+main {
   display: flex;
-  justify-content: flex-end;
+  align-content: center;
+  align-items: center;
+  flex-flow: column;
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+main > * {
+  margin: 20px 0px;
+}
+
+.header {
+  margin: 20px;
+}
+
+.header__title-container {
+  display: flex;
+}
+
+.header__title-container__logo {
+  margin: 5px;
+}
+
+.header__title-container__text {
+  font-size: 68px;
+  margin: 0px;
+}
+
+.header__subtitle {
+  opacity: 0.71;
+}
+
+.demo-section {
+  margin: 0px;
+}
+
+.demo-section__text a{
+  /* remove the default underline */
+  text-decoration: none;
+  /* so the after pseudo can be positioned */
+  position: relative;
+  /* no blue/purple link color */
+  color: inherit;
+}
+
+.demo-section__text a::after{
+  content: "";
+  position: absolute;
   bottom: 0px;
+  left: 0;
+  height: 2px;
   width: 100%;
-  height: 70px;
-  text-align: right;
+  background: linear-gradient(-124deg, #EE1D1D 0%, #E38222 100%);
 }
 </style>
