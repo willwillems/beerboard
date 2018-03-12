@@ -24,7 +24,7 @@ path /settings/{uid} {
 path /invite {
   read() { false }
   write() { false }
-  index() = "email"; // increases efficiency with the addUserToDB CF
+  index() { "email" } // increases efficiency with the addUserToDB CF
 }
 
 isCurrentUser(uid) { auth != null && auth.uid == uid }
