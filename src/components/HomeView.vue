@@ -92,7 +92,6 @@ main > * {
   margin: 20px 0px;
 }
 
-
 .header__title-container {
   display: flex;
 }
