@@ -6,7 +6,7 @@
         <div v-html="tiles.left.content" class="tile__section__content"></div>
       </div>
       <div class="spacer"></div>
-      <button class="tile__section__button">{{tiles.left.buttonTitle}}</button>
+      <button class="tile__section__button" @click="tiles.left.buttonClick">{{tiles.left.buttonTitle}}</button>
     </div>
     <div class="tile__border"></div>
     <div class="tile__section"> 
@@ -15,7 +15,7 @@
         <div v-html="tiles.right.content" class="tile__section__content"></div>
       </div>
       <div class="spacer"></div>
-      <button class="tile__section__button">{{tiles.right.buttonTitle}}</button>
+      <button class="tile__section__button" @click="tiles.right.buttonClick">{{tiles.right.buttonTitle}}</button>
     </div>
   </div>
 </template>

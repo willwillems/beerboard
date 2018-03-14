@@ -48,10 +48,11 @@ export default {
                       <li>Detailed usage statistics</li>
                       <li>Mobile web app</li>
                     </ul>`,
-          buttonTitle: "Try it!"
+          buttonTitle: "Try it!",
+          buttonClick: () => { location.href = 'http://eepurl.com/dnJ1UH' }
         },
         right: {
-          title: "€1/month",
+          title: "€3/month",
           content: `
                     <p>Besides everything included in the free tier:</p>
                     <ul>
@@ -59,7 +60,8 @@ export default {
                       <li>Personal support</li>
                       <li>3 month backup of your data</li>
                     </ul>`,
-          buttonTitle: "Buy it!"
+          buttonTitle: "Buy it!",
+          buttonClick: () => { location.href = 'http://eepurl.com/dnJ1UH' }
         }
       }
     }
