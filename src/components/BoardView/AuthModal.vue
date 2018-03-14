@@ -8,7 +8,7 @@ import {firebaseApp} from '@/firebase'
 var firebaseui = require('firebaseui')
 
 var uiConfig = {
-  signInSuccessUrl: '/', // 'boardview',
+  signInSuccessUrl: '/board', // 'boardview',
   signInOptions: [
     // Specify providers you want to offer your users.
     firebaseApp.auth.GoogleAuthProvider.PROVIDER_ID,
