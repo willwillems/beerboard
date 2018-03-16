@@ -16,6 +16,11 @@
       p
       i(@click="resetBeerValues") Reset beer values
       p 
+      h3 Invite User
+      div
+        input(type="email", v-model="newUserEmail")
+        button(@click="inviteUser") Click to invite
+      p
       h3 History
       table(cellspacing="0", cellpadding="0")
         tr
@@ -36,12 +41,7 @@ export default {
   name: "UserView",
   data: function () {
     return {
-      testData: {
-        dddddd: {
-          beers: 3,
-          time: 477410287
-        }
-      },
+      newUserEmail: "",
       ...firebasePlaceholders
     }
   },
@@ -73,6 +73,23 @@ export default {
           .child("beers")
           .set(0)
       })
+    },
+    inviteUser () {
+      var that = this
+      // this is a bit hacky, but then again this whole page barely quallifies as
+      // an MVP, plus this is very convienient
+      var house = this.$firebaseRefs.user.path.o[1]
+      db.ref("/invites")
+        .push(
+        {
+          email: that.newUserEmail,
+          house: house
+        },
+        e => { // error callback
+          if (e) console.error(e)
+          else that.newUserEmail = ""
+        }
+        )
     }
   },
   computed: {
@@ -96,7 +113,7 @@ $admin-view-backgroundcolor: #F6F6F6;
 .container {
   width: 600px;
 
-  input[type="text"], input[type="number"], button  {
+  input[type="text"], input[type="number"], input[type="email"], button  {
     background-color: white;
     border: solid 1px lightgray;
     border-radius: 5px;
