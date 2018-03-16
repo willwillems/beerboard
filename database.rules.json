@@ -36,10 +36,13 @@
         ".write": "auth != null && auth.uid == $uid"
       }
     },
-    "invite": {
-      ".indexOn": [
-        "email"
-      ]
+    "invites": {
+      "$inviteId": {
+        ".write": "root.child('houses').child(newData.child('house').val()).child('users').child(auth.uid).val() != null",
+        ".indexOn": [
+          "email"
+        ]
+      }
     }
   }
 }

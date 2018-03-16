@@ -21,9 +21,9 @@ path /settings/{uid} {
   write() { isCurrentUser(uid) }
 }
 
-path /invite {
+path /invites/{inviteId} {
   read() { false }
-  write() { false }
+  write() { currentUserBelongsToThisHouse(newData.child('house').val()) }
   index() { "email" } // increases efficiency with the addUserToDB CF
 }
 
