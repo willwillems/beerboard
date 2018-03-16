@@ -8,7 +8,7 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/",
+  "start_url": "/board",
   "orientation": "portrait",
   "display": "standalone",
   "background_color": "#F6F6F6",
