@@ -8,6 +8,7 @@
 </template>
 
 <script>
+// HTML5 drag-n-drop polyfill for touch devices
 import '@/assets/lib/dragdroptouch/DragDropTouch.js'
 
 import {firebaseApp} from '@/firebase'
