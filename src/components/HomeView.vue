@@ -32,6 +32,41 @@ export default {
   },
   data () {
     return {
+      title: 'Bierbord',
+      subtitle: 'Een simple oplossing voor het bijhouden van je biergebruik',
+      infoTexts: [{
+        title: 'Wat is dit überhaupt?',
+        text: 'Bierbord is een applicatie ontwikkeld om de bierconsumptie binnen een groep mensen op een makkelijke manier bij te houden. Je gebruikt bierbord het best met een centraal geplaatst touch scherm (touch pc/tablet) gemonteerd aan een muur. Bierbord ondersteunt zowel desktop computers als mobiele apparaten d.m.v. een webapp voor mobiel gebruik. Door een offline first ontwerp zijn je transacties en data goed beschermd tegen verlies tijdens een slechte of onregelmatige internet connectie. Als je vragen hebt aarzel niet om contact met ons op te nemen!'
+      }],
+      tiles: {
+        left: {
+          title: "Gratis",
+          content: `
+                    <p>Helemaal <i>gratis</i> met <i>onbeperkt</i> gebruik en geen andere limieten!</p>
+                    <ul>
+                      <li>Real-time data synchronisatie</li>
+                      <li>Gedetaileerde gebruik visualisaties</li>
+                      <li>Mobiele webapp</li>
+                    </ul>`,
+          buttonTitle: "Probeer het!",
+          buttonClick: () => { location.href = 'http://eepurl.com/dnJ1UH' }
+        },
+        right: {
+          title: "€4/maand",
+          content: `
+                    <p>Behalve alles genoemd in de gratis versie:</p>
+                    <ul>
+                      <li>Geautomatiseerde maandelijkse emails </li>
+                      <li>Persoonlijke ondersteuning</li>
+                      <li>3 maanden backup van je data</li>
+                    </ul>`,
+          buttonTitle: "Gebruik het!",
+          buttonClick: () => { location.href = 'http://eepurl.com/dnJ1UH' }
+        }
+      }
+    }
+    /*
+    return {
       title: 'Beerboard',
       subtitle: 'A simple reliable sollution to your beer managment',
       infoTexts: [{
@@ -65,6 +100,7 @@ export default {
         }
       }
     }
+    */
   }
 }
 </script>
@@ -92,6 +128,12 @@ main {
 
 main > * {
   margin: 20px 0px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .header__title-container {
