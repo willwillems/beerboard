@@ -9,7 +9,7 @@
         <i class="header__subtitle">{{subtitle}}</i>
       </header>
       <section class="demo-section">
-        <b class="demo-section__text">Check out our demo <a href="https://bierbord.nl/demo">here!</a></b>
+        <b class="demo-section__text">Check out our demo <a href="/demo">here!</a></b>
       </section>
       <section>
         <plans-tile :tiles="tiles"></plans-tile>

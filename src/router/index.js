@@ -40,7 +40,7 @@ export default new Router({
       beforeEnter (to, from, next) {
         auth.signInWithEmailAndPassword(c.DEMO_EMAIL, c.DEMO_PASSWORD)
           .then(() => {
-            next({ path: '/' })
+            next({ name: 'Board view' })
           })
           .catch(e => {
             next(e)
