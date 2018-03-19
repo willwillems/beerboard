@@ -4,7 +4,7 @@
     menu-bar
     board
     pop-up
-    cart(:cartList="cartDemo")
+    cart
 </template>
 
 <script>
@@ -25,26 +25,6 @@ export default {
     Cart,
     PopUp,
     AuthModal
-  },
-  data: function () {
-    return {
-      cartDemo: [
-        {
-          name: "Rutger",
-          uid: 32467891,
-          img: "https://graph.facebook.com/100001764027428/picture?width=999&height=999",
-          title: "Bierkoninge 2017",
-          beersInCart: "4"
-        },
-        {
-          name: "Rutger",
-          uid: 32467891,
-          img: "https://graph.facebook.com/100001764027428/picture?width=999&height=999",
-          title: "Bierkoninge 2017",
-          beersInCart: "4"
-        }
-      ]
-    }
   },
   created: function () {
     var that = this

@@ -31,9 +31,6 @@ import {activateFirebaseUserRefs, firebasePlaceholders} from '@/firebase'
 
 export default {
   name: 'cart',
-  props: {
-    cartList: Array
-  },
   created () {
     activateFirebaseUserRefs(this)
   },
