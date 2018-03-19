@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import '@/assets/lib/dragdroptouch/DragDropTouch.js'
+
 import {firebaseApp} from '@/firebase'
 import {addBeerToUser, entryExistInFirebase, dbMutationsStore} from '@/firebaseFunctions'
 
