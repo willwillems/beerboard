@@ -52,7 +52,7 @@ export default {
           buttonClick: () => { location.href = 'http://eepurl.com/dnJ1UH' }
         },
         right: {
-          title: "€3/month",
+          title: "€4/month",
           content: `
                     <p>Besides everything included in the free tier:</p>
                     <ul>
