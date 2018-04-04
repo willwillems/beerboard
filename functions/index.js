@@ -12,6 +12,11 @@ var mailgun = new Mailgun({
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
+
+// ---------------------- WARNING ----------------------
+// This code is not compatibe with the new 1.0 API, DO NOT DEPLOY
+// BEFORE REFACTORING!
+
 exports.helloWorld = functions.https.onRequest((request, response) => {
   var data = {
   // Specify email data
