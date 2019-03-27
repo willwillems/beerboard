@@ -9,9 +9,9 @@
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "test": "node test",
-    "staging": "yarn build && yarn bolt && firebase deploy -P staging",
-    "deploy": "yarn build && yarn bolt && firebase deploy",
-    "deploy-all": "yarn build && yarn bolt && firebase deploy -P staging && firebase deploy",
+    "staging": "npm run build && npm run bolt && firebase deploy -P staging",
+    "deploy": "npm run build && npm run bolt && firebase deploy",
+    "deploy-all": "npm run build && npm run bolt && firebase deploy -P staging && firebase deploy",
     "deploy-nobuild": "firebase deploy",
     "bolt": "firebase-bolt database.rules.bolt"
   },
