@@ -2,91 +2,75 @@ const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
 
-var Mailgun = require('mailgun-js')
-var apikey = 'key'
+exports.addUserToDB = functions.auth.user().onCreate(function (event) {
+  // Get the uid of the newly created user.
+  var uid = event.data.uid
 
-var mailgun = new Mailgun({
-  apiKey: apikey,
-  domain: "mg.beerboard.nl"})
-
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
-
-
-// ---------------------- WARNING ----------------------
-// This code is not compatibe with the new 1.0 API, DO NOT DEPLOY
-// BEFORE REFACTORING!
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  var data = {
-  // Specify email data
-    from: "test@beerboard.nl",
-  // The email to contact
-    to: "test@test.com",
-  // Subject and text data
-    subject: 'Hello from Mailgun',
-    html: 'Hello, This is not a plain-text email, I wanted to test some spicy Mailgun sauce in NodeJS! <a href="lol">Click here to add your email address to a mailing list</a>'
-  }
-  // Invokes the method to send emails given the above data with the helper library
-  mailgun.messages().send(data, function (err, body) {
-    // If there is an error, render the error page
-    if (err) {
-      response.send("error from Firebase!")
-    } else {
-      response.send("all good from Firebase!")
-    }
-  })
+  return admin.database()
+    .ref(`/settings`)
+    .child(uid)
+    .set({
+      house: null,
+      beers: 0,
+      img: "/placeholder.png",
+      date: Date.now()
+    })
 })
 
-exports.addUserToDB = functions.auth.user().onCreate(function (event) {
-  // Get the uid and display name of the newly created user.
-  var uid = event.data.uid
-  var email = event.data.email
-  var house
-  // Start data for the user
-  var beers
-  var img
-  var name
-
-  admin.database()
-    .ref(`/invites`)
-    .orderByChild("email")
-    .equalTo(email)
-    .once('value')
-    .then(function (snapshot) {
-      var invite = snapshot.val()
-      var data
-      try {
-        data = invite[Object.keys(invite)[0]]
-      } catch (e) {
-        return Promise.reject("No invite was present")
-      }
-      house = data.house
-      // If data is specified in the invite use it else use defaults
-      beers = data.beers || 0
-      img = data.img || "/placeholder.png"
-      name = data.name || event.data.displayName || "unknown"
-
+exports.addUserToHouse = functions.https.onRequest((req, res) => {
+  // Grab the text parameter.
+  var email = req.query.email
+  var houseId = req.query.house
+  var uid
+  // check if the request is proper
+  if (!email || !houseId) return res.status(400).send({ error: 'Need email and houseId' })
+  if (req.method !== "POST") return res.status(400).send({ error: 'Only POST requests' })
+  // write the data
+  return admin.auth()
+    .getUserByEmail(email)
+    .then((userRecord) => {
+      // Add the user record to the house object
+      uid = userRecord.uid
       return admin.database()
-        .ref(`/settings`)
-        .child(uid)
+        .ref(`houses/${houseId}/users/${uid}`)
         .set({
-          house,
-          date: Date.now()
+          uid,
+          name: userRecord.displayName || "",
+          img: "/placeholder.png",
+          color: "",
+          beers: 0
         })
     })
-    .then(function () {
+    .then(ref => {
+      // add the house property to the user
       return admin.database()
-        .ref(`/houses/${house}/users`)
-        .child(uid)
-        .set({
-          beers,
-          img,
-          name,
-          uid
-        })
+        .ref(`settings/${uid}`)
+        .update({ house: houseId })
     })
-    .catch(function (e) {
-      console.log(e)
+    .then(ref => res.status(200).send({ status: 'Data saved' }))
+    .catch(e => {
+      console.log("Error fetching user data:", e)
+      res.status(500).send({ error: 'Something went wrong' })
+    })
+})
+
+exports.createHouse = functions.https.onRequest((req, res) => {
+  // Grab the text parameter.
+  var name = req.query.name
+  // check if the request is proper
+  if (!name) return res.status(400).send({ error: 'Need a name' })
+  if (req.method !== "POST") return res.status(400).send({ error: 'Only POST requests' })
+  // write the data
+  return admin.database()
+    .ref(`houses`)
+    .push({
+      name,
+      created: Date.now(),
+      users: []
+    })
+    .then(ref => res.status(500).send({ status: 'House created', uid: ref.key }))
+    .catch(e => {
+      console.log("Error fetching user data:", e)
+      res.status(500).send({ error: 'Something went wrong' })
     })
 })

@@ -6,6 +6,14 @@
     "public": "dist",
     "rewrites": [
       {
+        "source": "/api/addusertohouse",
+        "function": "addUserToHouse"
+      },
+      {
+        "source": "/api/createhouse",
+        "function": "createHouse"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

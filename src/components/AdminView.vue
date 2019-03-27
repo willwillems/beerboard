@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import downloadCsv from 'download-csv'
+
 import {activateFirebaseUserRefs, firebasePlaceholders, firebaseApp} from '@/firebase'
 
 const db = firebaseApp.database()
@@ -55,16 +57,15 @@ export default {
     date (time) {
       return new Date(time)
     },
-    convertUserdataToCSV (data) {
-      let lineArray = []
-      data.forEach(function (infoArray, index) {
-        const line = Object.values(infoArray).join(",")
-        lineArray.push(index === 0 ? "data:text/csv;charset=utf-8," + line : line)
-      })
-      return lineArray.join("\n")
-    },
     downloadUserdata () {
-      window.open(encodeURI(this.convertUserdataToCSV(this.boardUsers)))
+      const cleanData = this.boardUsers
+        .map(user => ({
+          name: user.name,
+          beers: user.beers,
+          uid: user['.key']
+        }))
+
+      return downloadCsv(cleanData)
     },
     resetBeerValues () {
       this.boardUsers.forEach((e) => {
@@ -79,17 +80,10 @@ export default {
       // this is a bit hacky, but then again this whole page barely quallifies as
       // an MVP, plus this is very convienient
       var house = this.$firebaseRefs.user.path.o[1]
-      db.ref("/invites")
-        .push(
-        {
-          email: that.newUserEmail,
-          house: house
-        },
-        e => { // error callback
-          if (e) console.error(e)
-          else that.newUserEmail = ""
-        }
-        )
+      fetch(`/api/addusertohouse?email=${this.newUserEmail}&house=${house}`, { method: "POST" })
+        .then(data => data.json())
+        .then(console.log)
+        // .catch(console.error)
     }
   },
   computed: {
