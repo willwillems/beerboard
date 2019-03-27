@@ -20,6 +20,10 @@ export default new Router({
       component: BoardView
     },
     {
+      path: '/bord',
+      redirect: '/board'
+    },
+    {
       path: '/user',
       name: 'User view',
       component: UserView
