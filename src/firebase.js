@@ -8,7 +8,8 @@ firebase.initializeApp({
   databaseURL: c.FIREBASE_DB,
   projectId: c.FIREBASE_PROJECT_ID,
   storageBucket: c.FIREBASE_STORAGE,
-  messagingSenderId: c.FIREBASE_MESSAGE_ID
+  messagingSenderId: c.FIREBASE_MESSAGE_ID,
+  appId: c.FIREBASE_APP_ID
 })
 export const db = firebase.database()
 export const auth = firebase.auth()
