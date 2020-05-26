@@ -27,7 +27,8 @@ module.exports = merge(baseWebpackConfig, {
       "_FIREBASE_AUTH_": JSON.stringify("beerboard-1367.firebaseapp.com"),
       "_FIREBASE_PROJECT_ID_": JSON.stringify("beerboard-1367"),
       "_FIREBASE_STORAGE_": JSON.stringify("beerboard-1367.appspot.com"),
-      "_FIREBASE_MESSAGE_ID_": JSON.stringify("497350370975")
+      "_FIREBASE_MESSAGE_ID_": JSON.stringify("497350370975"),
+      "_FIREBASE_APP_ID_": JSON.stringify("1:497350370975:web:6d0db74f9d620b6f4fe4aa")
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),

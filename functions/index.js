@@ -1,10 +1,10 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-admin.initializeApp(functions.config().firebase)
+admin.initializeApp()
 
-exports.addUserToDB = functions.auth.user().onCreate(function (event) {
+exports.addUserToDB = functions.auth.user().onCreate(function (userRecord, context) {
   // Get the uid of the newly created user.
-  var uid = event.data.uid
+  var uid = userRecord.uid
 
   return admin.database()
     .ref(`/settings`)

@@ -18,6 +18,8 @@
   "dependencies": {
     "download-csv": "^1.1.1",
     "firebase": "^3.7.5",
+    "firebase-admin": "^8.12.1",
+    "firebase-functions": "^3.6.1",
     "firebaseui": "^1.0.1",
     "localforage": "^1.5.0",
     "vue": "^2.2.2",
