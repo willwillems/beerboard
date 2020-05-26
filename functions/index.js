@@ -30,6 +30,7 @@ exports.addUserToHouse = functions.https.onRequest((req, res) => {
     .getUserByEmail(email)
     .then((userRecord) => {
       // Add the user record to the house object
+      if (!userRecord) return res.status(400).send({ error: 'User record not found' })
       uid = userRecord.uid
       return admin.database()
         .ref(`houses/${houseId}/users/${uid}`)
