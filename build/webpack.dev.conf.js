@@ -21,12 +21,13 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env,
       // firebase prod config
-      "_FIREBASE_DB_": JSON.stringify("https://beerboard-staging.firebaseio.com"),
-      "_FIREBASE_API_KEY_": JSON.stringify("AIzaSyCWjrEqzNL_ndOFiKif2cFQws_yYCYcBx8"),
-      "_FIREBASE_AUTH_": JSON.stringify("beerboard-staging.firebaseapp.com"),
-      "_FIREBASE_PROJECT_ID_": JSON.stringify("beerboard-staging"),
-      "_FIREBASE_STORAGE_": JSON.stringify("beerboard-staging.appspot.com"),
-      "_FIREBASE_MESSAGE_ID_": JSON.stringify("142269005793")
+      // firebase prod config
+      "_FIREBASE_DB_": JSON.stringify("https://beerboard-1367.firebaseio.com/"),
+      "_FIREBASE_API_KEY_": JSON.stringify("AIzaSyCdd6CAqPFNIpGKJyrg72r2tUI0SWei1oM"),
+      "_FIREBASE_AUTH_": JSON.stringify("beerboard-1367.firebaseapp.com"),
+      "_FIREBASE_PROJECT_ID_": JSON.stringify("beerboard-1367"),
+      "_FIREBASE_STORAGE_": JSON.stringify("beerboard-1367.appspot.com"),
+      "_FIREBASE_MESSAGE_ID_": JSON.stringify("497350370975")
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
